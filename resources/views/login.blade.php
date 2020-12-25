@@ -78,7 +78,7 @@
                       <B>LOGIN</B>
                     </button>
 
-                    <a href="{{ url('register') }}" class="btn btn btn-outline-primary btn-block mt-3">Daftar Sebagai Mahasiswa</a>
+                    {{-- <a href="{{ url('register') }}" class="btn btn btn-outline-primary btn-block mt-3">Daftar Sebagai Mahasiswa</a> --}}
                   </form>
                   <hr>
                   <!-- <div class="text-center">
