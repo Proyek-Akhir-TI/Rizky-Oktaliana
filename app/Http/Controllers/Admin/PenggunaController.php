@@ -19,7 +19,7 @@ class PenggunaController extends Controller
 
     public function index()
     {
-        $data = DB::table('pengguna')->get();
+        $data = DB::table('pengguna')->where('hak_akses', 'admin')->orWhere('hak_akses', 'wadir')->get();
 
         $title  = $this->title;
         $prefix = $this->prefix;

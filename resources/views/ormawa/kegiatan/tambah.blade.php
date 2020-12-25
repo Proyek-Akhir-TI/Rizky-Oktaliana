@@ -51,10 +51,6 @@
                 <input type="text" class="form-control" id="waktu_mulai" name="waktu_mulai"> 
             </div>
             <div class="form-group">
-                <label for="waktu_akhir">Waktu Mulai</label>
-                <input type="text" class="form-control" id="waktu_akhir" name="waktu_akhir"> 
-            </div>
-            <div class="form-group">
                 <label for="kuota">Kuota Peserta</label>
                 <input type="number" class="form-control" id="kuota" name="kuota"> 
             </div>
