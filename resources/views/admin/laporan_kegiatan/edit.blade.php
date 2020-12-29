@@ -8,7 +8,7 @@
 <!-- Page Heading -->
 <div class="row">
     <div class="col-lg-6">
-        <h1 class="h3 mb-4 text-gray-800">Tambah Data {{ $title }}</h1>
+        <h1 class="h3 mb-4 text-gray-800">Edit Data {{ $title }}</h1>
     </div>
 </div>
 
@@ -24,7 +24,7 @@
             
             <div class="form-group">
                 <label for="nama">Nama Proker</label>
-                <input type="text" class="form-control" id="nama" name="nama"> 
+                <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->nama }}"> 
             </div>
             <div class="form-group">
                 <label for="ormawa_id">Ormawa</label>
@@ -32,7 +32,7 @@
                   <option value="">- Pilih Ormawa -</option>
 
                   @foreach ($ormawa as $value)
-                      <option value="{{ $value->id }}">{{ $value->nama }}</option>
+                      <option {{ ($data->ormawa_id == $value->id) ? 'selected' : '' }} value="{{ $value->id }}">{{ $value->nama }}</option>
                   @endforeach
                 </select>
             </div>
@@ -42,17 +42,25 @@
                   <option value="">- Pilih Ruangan -</option>
 
                   @foreach ($ruangan as $value)
-                      <option value="{{ $value->id }}">{{ $value->nama }}</option>
+                      <option {{ ($data->ruangan_id == $value->id) ? 'selected' : '' }} value="{{ $value->id }}">{{ $value->nama }}</option>
                   @endforeach
                 </select>
             </div>
             <div class="form-group">
+                <label for="status">Status</label>
+                <select name="status" id="status" class="form-control">
+                  <option {{ ($data->status == '1') ? 'selected':''  }} value="1">Belum Dilaksanakan</option>
+                  <option {{ ($data->status == '2') ? 'selected':''  }} value="2">Sudah Dilaksanakan</option>
+                  <option {{ ($data->status == '3') ? 'selected':''  }} value="3">Tidak Dilaksanakan</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="tanggal_mulai">Tanggal Mulai</label>
-                <input type="text" class="form-control" id="tanggal_mulai" name="tanggal_mulai"> 
+                <input type="text" class="form-control" id="tanggal_mulai" name="tanggal_mulai" value="{{ $data->tanggal_mulai }}"> 
             </div>
             <div class="form-group">
                 <label for="tanggal_akhir">Tanggal Akhir</label>
-                <input type="text" class="form-control" id="tanggal_akhir" name="tanggal_akhir"> 
+                <input type="text" class="form-control" id="tanggal_akhir" name="tanggal_akhir" value="{{ $data->tanggal_akhir }}"> 
             </div>
             
             <button type="submit" class="btn btn-primary">Simpan Data</button>

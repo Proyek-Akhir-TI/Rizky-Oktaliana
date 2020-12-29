@@ -23,6 +23,7 @@
                   <th>Username</th>
                   <th>Nama Ketua</th>
                   <th>No. HP.</th>
+                  <th>Status</th>
                   <th>Aksi</th>
               </thead>
               <tbody>
@@ -33,6 +34,7 @@
                             <td>{{ $value->username }}</td>
                             <td>{{ $value->nama_ketua }}</td>
                             <td>{{ $value->no_hp }}</td>
+                            <td>{{ ($value->status) ? 'Aktif' : 'Non Aktif' }}</td>
                             <td>
                                 {{-- <a href="{{ url('admin/' . $prefix . '/reset_password/' . $value->id) }}" class="btn btn-outline-primary btn-sm mr-1" onclick="return confirm('Apakah anda yakin?');">Reset Password</a> --}}
                                 <a href="{{ url('admin/' . $prefix . '/detail/' . $value->id) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>

@@ -25,9 +25,48 @@ class DashboardController extends Controller
             where date_format(k.tanggal, '%Y-%m') = '$this_month'
         ");
 
+        $ormawa_id = "";
+        $ormawa    = DB::table('ormawa')->get();
+
         return view('wadir/dashboard', compact(
             'kegiatan',
-            'this_month_text'
+            'this_month_text',
+            'ormawa_id',
+            'ormawa' 
+        ));
+    }
+
+    public function search_kegiatan(Request $request)
+    {
+        $this_month = date('Y-m');
+        $this_month_text = month_text(date('m')) . ' ' . date('Y');
+
+        $ormawa_id = $request->input('ormawa_id');
+        
+        $qOrmawa = '';
+        if (!empty($ormawa_id)) {
+            $qOrmawa = " AND o.id = $ormawa_id";
+        }
+        
+        $kegiatan = DB::select("SELECT 
+                k.*,
+                o.nama AS nama_ormawa,
+                r.nama AS nama_ruangan
+            FROM kegiatan k
+            left join ormawa o
+                on o.id = k.ormawa_id
+            left join ruangan r
+                on r.id = k.ruangan_id
+            where date_format(k.tanggal, '%Y-%m') = '$this_month' $qOrmawa
+        ");
+
+        $ormawa = DB::table('ormawa')->get();
+
+        return view('wadir/dashboard', compact(
+            'kegiatan',
+            'this_month_text',
+            'ormawa_id',
+            'ormawa' 
         ));
     }
 

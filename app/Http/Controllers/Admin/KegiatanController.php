@@ -10,7 +10,7 @@ class KegiatanController extends Controller
 {
     function __construct()
     {
-        $this->title  = 'Laporan Kegiatan';
+        $this->title  = 'Data Kegiatan';
         $this->prefix = 'kegiatan';
         $app_type     = 'admin';
 
@@ -72,7 +72,7 @@ class KegiatanController extends Controller
             $qWaktu = '';
             
             if (!empty($bulan) || !empty($tahun)) {
-                $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+                $qWaktu = "where DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
             }
 
             $data = DB::select("SELECT 
@@ -84,7 +84,7 @@ class KegiatanController extends Controller
                     on o.id = k.ormawa_id
                 left join ruangan r
                     on r.id = k.ruangan_id
-                where o.id = $ormawa_id $qWaktu
+                 $qWaktu
             ");
         }
 

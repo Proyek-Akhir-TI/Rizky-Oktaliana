@@ -1,27 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Ormawa;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class KegiatanController extends Controller
+class LaporanKegiatanControlller extends Controller
 {
     function __construct()
     {
-        $this->title  = 'Data Kegiatan';
-        $this->prefix = 'kegiatan';
-        $app_type     = 'ormawa';
+        $this->title  = 'Laporan Kegiatan';
+        $this->prefix = 'laporan_kegiatan';
+        $app_type     = 'admin';
 
         $this->root = $app_type . '/' . $this->prefix;
     }
 
     public function index()
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
-
 		$data = DB::select("SELECT 
 				k.*,
 				o.nama AS nama_ormawa,
@@ -31,8 +28,7 @@ class KegiatanController extends Controller
 				on o.id = k.ormawa_id
 			left join ruangan r
 				on r.id = k.ruangan_id
-            WHERE o.pengguna_id = $penggunaID
-        ");
+		");
 
         $ormawa = DB::table('ormawa')->get();
 
@@ -107,104 +103,6 @@ class KegiatanController extends Controller
             'form_action_url',
             'prefix'
         ));
-    }
-
-    public function tambah()
-    {
-        $title           = $this->title;
-        $prefix          = $this->prefix;
-        $form_action_url = $this->root . '/tambah';
-        $penggunaID      = Auth::guard('admin')->user()->id;
-
-        $ormawa_id = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first()->id;
-
-        $ruangan = DB::table('ruangan')->get();
-
-        return view($this->root . '/tambah', compact(
-            'data',
-            'title',
-            'form_action_url',
-            'prefix',
-            'ormawa_id',
-            'ruangan'
-        ));
-    }
-
-    public function prosesTambah(Request $request)
-    {
-        $data = $request->input();
-
-        $request->validate([
-            'poster' => 'required|max:20480',
-        ]);
-        
-        unset($data['_token']);
-
-        $data['waktu_mulai'] = $data['waktu_mulai'] . ':00';
-        $data['waktu_akhir'] = $data['waktu_akhir'] . ':00';
-        $data['jml_peserta'] = 0;
-        $data['jml_kehadiran'] = 0;
-
-        if (!empty($request->poster)) {
-            $data['poster'] = time().'.'.$request->poster->extension();
-
-            $request->poster->move(public_path('uploads'), $data['poster']);
-        }
-        
-        DB::table('kegiatan')->insert($data);
-
-        return redirect($this->root);
-    }
-
-    public function edit($id)
-    {
-        $title           = $this->title;
-        $prefix          = $this->prefix;
-        $form_action_url = $this->root . '/edit/' . $id;
-        $penggunaID      = Auth::guard('admin')->user()->id;
-
-        $data = DB::table('kegiatan')->where('id', $id)->first();
-
-        $ormawa_id = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first()->id;
-
-        $ruangan = DB::table('ruangan')->get();
-
-        return view($this->root . '/edit', compact(
-            'data',
-            'title',
-            'form_action_url',
-            'prefix',
-            'ormawa_id',
-            'ruangan'
-        ));
-    }
-
-    public function prosesEdit(Request $request, $id)
-    {
-        $data = $request->input();
-
-        $request->validate([
-            'poster' => 'max:20480',
-        ]);
-        
-        unset($data['_token']);
-
-        $data['waktu_mulai']   = $data['waktu_mulai'] . ':00';
-        $data['waktu_akhir']   = $data['waktu_akhir'] . ':00';
-        $data['jml_peserta']   = 0;
-        $data['jml_kehadiran'] = 0;
-
-        if (!empty($request->poster)) {
-            $data['poster'] = time().'.'.$request->poster->extension();
-
-            $request->poster->move(public_path('uploads'), $data['poster']);
-        }
-        
-        DB::table('kegiatan')
-            ->where('id', $id)
-            ->update($data);
-
-        return redirect($this->root);
     }
 
     public function detail($id)

@@ -45,11 +45,29 @@
     <div class="col-md-12">
         <div class="row mb-4">
             <div class="col-md-6">
-                <h3>Daftar Kegiatan</h3>
+                <h5>Daftar Kegiatan</h5>
                 <span class="text-muted">Kegiatan Bulan <b>{{ $this_month_text }}</b></span>
             </div>
-            <div class="col-md-6 text-right">
+            {{-- <div class="col-md-6 text-right">
                 <a href="{{ url('wadir/kegiatan') }}" class="btn btn-outline-primary">Lihat Semua</a>
+            </div> --}}
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <form class="form-inline" method="GET" action="{{ url('wadir/dashboard/search_kegiatan') }}">
+                    <div class="input-group mb-2 mr-sm-2">
+                        <select name="ormawa_id" id="ormawa_id" class="form-control">
+                            <option value="">- Semua Ormawa -</option>
+                            
+                            @foreach ($ormawa as $value)
+                                <option {{ ($ormawa_id == $value->id) ? 'selected' : "" }} value="{{ $value->id }}">{{ $value->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary mb-2">Cari</button>
+                </form>
             </div>
         </div>
 

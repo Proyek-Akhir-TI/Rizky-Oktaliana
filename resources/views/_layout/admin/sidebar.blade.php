@@ -22,7 +22,7 @@ $role = Auth::guard('admin')->user()->hak_akses;
     <li class="nav-item {{ ($page == 'dashboard') ? 'active':'' }}">
     <a class="nav-link" href="{{ url($role . '/dashboard') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Beranda</span></a>
+        <span>Dashboard</span></a>
     </li>
 
     <!-- Divider -->
@@ -42,7 +42,7 @@ $role = Auth::guard('admin')->user()->hak_akses;
       <li class="nav-item {{ ($page == 'kegiatan') ? 'active':'' }}">
           <a class="nav-link" href="{{ url('admin/kegiatan') }}">
           <i class="fas fa-fw fa-archive"></i>
-          <span>Laporan Kegiatan</span></a>
+          <span>Data Kegiatan</span></a>
       </li>
       {{-- <li class="nav-item {{ ($page == 'ormawa') ? 'active':'' }}">
           <a class="nav-link" href="{{ url('admin/ormawa') }}">
@@ -53,6 +53,11 @@ $role = Auth::guard('admin')->user()->hak_akses;
           <a class="nav-link" href="{{ url('admin/ruangan') }}">
           <i class="fas fa-fw fa-archive"></i>
           <span>Data Ruangan</span></a>
+      </li>
+      <li class="nav-item {{ ($page == 'laporan_kegiatan') ? 'active':'' }}">
+          <a class="nav-link" href="{{ url('admin/laporan_kegiatan') }}">
+          <i class="fas fa-fw fa-archive"></i>
+          <span>Laporan Kegiatan</span></a>
       </li>
       {{-- <li class="nav-item {{ ($page == 'report') ? 'active':'' }}">
           <a class="nav-link" href="{{ url('admin/report') }}">
@@ -74,7 +79,7 @@ $role = Auth::guard('admin')->user()->hak_akses;
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{ ($page == 'pengguna') ? 'active':'' }}" href="{{ url('admin/pengguna') }}">Data Pengguna</a>
             <a class="collapse-item {{ ($page == 'ormawa') ? 'active':'' }}" href="{{ url('admin/ormawa') }}">Data Ormawa</a>
-            <a class="collapse-item {{ ($page == 'mahasiswa') ? 'active':'' }}" href="{{ url('admin/mahasiswa') }}">Data Mahasiswa</a>
+            {{-- <a class="collapse-item {{ ($page == 'mahasiswa') ? 'active':'' }}" href="{{ url('admin/mahasiswa') }}">Data Mahasiswa</a> --}}
           </div>
         </div>
       </li>

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Mahasiswa;
+namespace App\Http\Controllers\Ormawa;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class KegiatanController extends Controller
+class KegiatanOrmawaController extends Controller
 {
     function __construct()
     {
@@ -140,10 +140,11 @@ class KegiatanController extends Controller
         
         unset($data['_token']);
 
-        $data['waktu_mulai'] = $data['waktu_mulai'] . ':00';
-        $data['waktu_akhir'] = $data['waktu_akhir'] . ':00';
-        $data['jml_peserta'] = 0;
-        $data['jml_kehadiran'] = 0;
+        $data['waktu_mulai']          = $data['waktu_mulai'] . ': 00';
+        $data['waktu_akhir']          = $data['waktu_akhir'] . ': 00';
+        $data['total_biaya_kegiatan'] = str_replace(',', '', $data['total_biaya_kegiatan']);
+        $data['biaya_keikutsertaan']  = str_replace(',', '', $data['biaya_keikutsertaan']);
+        $data['status']               = 1; // belum terlaksana
 
         if (!empty($request->poster)) {
             $data['poster'] = time().'.'.$request->poster->extension();
@@ -189,13 +190,17 @@ class KegiatanController extends Controller
         
         unset($data['_token']);
 
-        $data['waktu_mulai']   = $data['waktu_mulai'] . ':00';
-        $data['waktu_akhir']   = $data['waktu_akhir'] . ':00';
-        $data['jml_peserta']   = 0;
-        $data['jml_kehadiran'] = 0;
+        $data['waktu_mulai']          = $data['waktu_mulai'];
+        $data['waktu_akhir']          = $data['waktu_akhir'];
+        $data['total_biaya_kegiatan'] = str_replace(',', '', $data['total_biaya_kegiatan']);
+        $data['biaya_keikutsertaan']  = str_replace(',', '', $data['biaya_keikutsertaan']);
+
+        if ($data['jml_kehadiran'] > 0) {
+            $data['status'] = 2; // Sudah terlaksana
+        }
 
         if (!empty($request->poster)) {
-            $data['poster'] = time().'.'.$request->poster->extension();
+            $data['poster'] = time() . '.' . $request->poster->extension();
 
             $request->poster->move(public_path('uploads'), $data['poster']);
         }

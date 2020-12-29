@@ -52,7 +52,7 @@
                 <input type="text" class="form-control" id="waktu_mulai" name="waktu_mulai" value="{{ $data->waktu_mulai }}"> 
             </div>
             <div class="form-group">
-                <label for="waktu_akhir">Waktu Mulai</label>
+                <label for="waktu_akhir">Waktu Akhir</label>
                 <input type="text" class="form-control" id="waktu_akhir" name="waktu_akhir" value="{{ $data->waktu_akhir }}"> 
             </div>
             <div class="form-group">
@@ -61,11 +61,15 @@
             </div>
             <div class="form-group">
                 <label for="total_biaya_kegiatan">Total Biaya Kegiatan</label>
-                <input type="number" class="form-control" id="total_biaya_kegiatan" name="total_biaya_kegiatan" value="{{ $data->total_biaya_kegiatan }}"> 
+                <input type="text" class="form-control" id="total_biaya_kegiatan" name="total_biaya_kegiatan" value="{{ $data->total_biaya_kegiatan }}"> 
             </div>
             <div class="form-group">
                 <label for="biaya_keikutsertaan">Biaya Keikutsertaan</label>
-                <input type="number" class="form-control" id="biaya_keikutsertaan" name="biaya_keikutsertaan" value="{{ $data->biaya_keikutsertaan }}"> 
+                <input type="text" class="form-control" id="biaya_keikutsertaan" name="biaya_keikutsertaan" value="{{ $data->biaya_keikutsertaan }}"> 
+            </div>
+            <div class="form-group">
+                <label for="jml_kehadiran">Jumlah Kehadiran Peserta</label>
+                <input type="text" class="form-control" id="jml_kehadiran" name="jml_kehadiran" value="{{ $data->jml_kehadiran }}"> 
             </div>
             
             <button type="submit" class="btn btn-primary">Simpan Data</button>
@@ -80,6 +84,7 @@
 
 @section('custom-js')
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.0.2/cleave.min.js" integrity="sha512-SvgzybymTn9KvnNGu0HxXiGoNeOi0TTK7viiG0EGn2Qbeu/NFi3JdWrJs2JHiGA1Lph+dxiDv5F9gDlcgBzjfA==" crossorigin="anonymous"></script>
 <script>
 $("#tanggal").flatpickr({
     altInput: true,
@@ -95,6 +100,15 @@ $("#waktu_akhir").flatpickr({
     enableTime: true,
     noCalendar: true,
     dateFormat: "H:i",
+});
+
+var cleave = new Cleave('#total_biaya_kegiatan', {
+    numeral: true,
+    numeralThousandsGroupStyle: 'thousand'
+});
+var cleave2 = new Cleave('#biaya_keikutsertaan', {
+    numeral: true,
+    numeralThousandsGroupStyle: 'thousand'
 });
 </script>
 @endsection

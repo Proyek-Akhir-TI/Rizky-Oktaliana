@@ -37,6 +37,13 @@
                 <label for="nama_ketua">Nama Ketua</label>
                 <input type="text" class="form-control" id="nama_ketua" name="nama_ketua" value="{{ $data->nama_ketua }}"> 
             </div>
+            <div class="form-group">
+                <label for="status">Status Ormawa</label>
+                <select name="status" id="status" class="form-control">
+                  <option {{ ($data->status == 1) ? 'selected' : '' }} value="1">Aktif</option>
+                  <option {{ ($data->status == 0) ? 'selected' : '' }} value="0">Non Aktif</option>
+                </select>
+            </div>
             
             <button type="submit" class="btn btn-primary">Simpan Data</button>
         </form>

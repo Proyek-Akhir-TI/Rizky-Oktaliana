@@ -46,11 +46,15 @@ Route::group([
     Route::get('proker/edit/{id}', ['uses' => 'ProkerController@edit']);
     Route::post('proker/edit/{id}', ['uses' => 'ProkerController@prosesEdit']);
     Route::get('proker/hapus/{id}', ['uses' => 'ProkerController@hapus']);
-
+    
     // KEGIATAN
     Route::get('kegiatan', ['uses' => 'KegiatanController@index']);
     Route::get('kegiatan/search', ['uses' => 'KegiatanController@search']);
     Route::get('kegiatan/detail/{id}', ['uses' => 'KegiatanController@detail']); 
+    // LAPORAN KEGIATAN
+    Route::get('laporan_kegiatan', ['uses' => 'LaporanKegiatanControlller@index']);
+    Route::get('laporan_kegiatan/search', ['uses' => 'LaporanKegiatanControlller@search']);
+    Route::get('laporan_kegiatan/detail/{id}', ['uses' => 'LaporanKegiatanControlller@detail']); 
 
     // ORMAWA
     Route::get('ormawa', ['uses' => 'OrmawaController@index']);
@@ -93,6 +97,7 @@ Route::group([
     'namespace'  => 'Wadir',
 ], function () {
     Route::get('dashboard', ['uses' => 'DashboardController@index']);
+    Route::get('dashboard/search_kegiatan', ['uses' => 'DashboardController@search_kegiatan']);
     Route::get('dashboard/calender/get_data', ['uses' => 'DashboardController@getDataCalendar']);
     
     // KEGIATAN
@@ -116,13 +121,13 @@ Route::group([
     Route::get('dashboard/calender/get_data', ['uses' => 'DashboardController@getDataCalendar']);
     
     // KEGIATAN
-    Route::get('kegiatan', ['uses' => 'KegiatanController@index']);
-    Route::get('kegiatan/detail/{id}', ['uses' => 'KegiatanController@detail']); 
-    Route::get('kegiatan/search', ['uses' => 'KegiatanController@search']);
-    Route::get('kegiatan/tambah', ['uses' => 'KegiatanController@tambah']);
-    Route::post('kegiatan/tambah', ['uses' => 'KegiatanController@prosesTambah']);
-    Route::get('kegiatan/edit/{id}', ['uses' => 'KegiatanController@edit']);
-    Route::post('kegiatan/edit/{id}', ['uses' => 'KegiatanController@prosesEdit']);
+    Route::get('kegiatan', ['uses' => 'KegiatanOrmawaController@index']);
+    Route::get('kegiatan/detail/{id}', ['uses' => 'KegiatanOrmawaController@detail']); 
+    Route::get('kegiatan/search', ['uses' => 'KegiatanOrmawaController@search']);
+    Route::get('kegiatan/tambah', ['uses' => 'KegiatanOrmawaController@tambah']);
+    Route::post('kegiatan/tambah', ['uses' => 'KegiatanOrmawaController@prosesTambah']);
+    Route::get('kegiatan/edit/{id}', ['uses' => 'KegiatanOrmawaController@edit']);
+    Route::post('kegiatan/edit/{id}', ['uses' => 'KegiatanOrmawaController@prosesEdit']);
 
 });
 
