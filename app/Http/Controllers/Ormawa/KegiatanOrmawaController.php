@@ -42,6 +42,7 @@ class KegiatanOrmawaController extends Controller
         $bulan = '';
         $tahun = '';
         $ormawa_id = '';
+        $form_action_url = '';
 
         return view($this->root . '/index', compact(
             'data',
@@ -121,7 +122,6 @@ class KegiatanOrmawaController extends Controller
         $ruangan = DB::table('ruangan')->get();
 
         return view($this->root . '/tambah', compact(
-            'data',
             'title',
             'form_action_url',
             'prefix',
@@ -140,8 +140,8 @@ class KegiatanOrmawaController extends Controller
         
         unset($data['_token']);
 
-        $data['waktu_mulai']          = $data['waktu_mulai'] . ': 00';
-        $data['waktu_akhir']          = $data['waktu_akhir'] . ': 00';
+        $data['waktu_mulai']          = $data['waktu_mulai'];
+        $data['waktu_akhir']          = $data['waktu_akhir'];
         $data['total_biaya_kegiatan'] = str_replace(',', '', $data['total_biaya_kegiatan']);
         $data['biaya_keikutsertaan']  = str_replace(',', '', $data['biaya_keikutsertaan']);
         $data['status']               = 1; // belum terlaksana
