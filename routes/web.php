@@ -119,6 +119,8 @@ Route::group([
 ], function () {
     Route::get('dashboard', ['uses' => 'DashboardController@index']);
     Route::get('dashboard/calender/get_data', ['uses' => 'DashboardController@getDataCalendar']);
+    Route::get('dashboard/search_kegiatan', ['uses' => 'DashboardController@index']);
+    Route::get('dashboard/detail_kegiatan/{id}', ['uses' => 'DashboardController@detail_kegiatan']);
     
     // KEGIATAN
     Route::get('kegiatan', ['uses' => 'KegiatanOrmawaController@index']);
@@ -128,6 +130,11 @@ Route::group([
     Route::post('kegiatan/tambah', ['uses' => 'KegiatanOrmawaController@prosesTambah']);
     Route::get('kegiatan/edit/{id}', ['uses' => 'KegiatanOrmawaController@edit']);
     Route::post('kegiatan/edit/{id}', ['uses' => 'KegiatanOrmawaController@prosesEdit']);
+
+    Route::get('pengguna/update', ['uses' => 'PenggunaController@update']);
+    Route::post('pengguna/update', ['uses' => 'PenggunaController@prosesUpdate']);
+    Route::get('pengguna/update_password', ['uses' => 'PenggunaController@updatePassword']);
+    Route::post('pengguna/update_password', ['uses' => 'PenggunaController@prosesUpdatePassword']);
 
 });
 

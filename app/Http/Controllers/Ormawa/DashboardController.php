@@ -8,10 +8,38 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public function index()
+    function __construct()
+    {
+        $this->title  = 'Dashboard';
+        $this->prefix = 'dashboard';
+        $app_type     = 'ormawa';
+
+        $this->root = $app_type . '/' . $this->prefix;
+    }
+
+    public function index(Request $request)
     {
         $this_month = date('Y-m');
         $this_month_text = month_text(date('m')) . ' ' . date('Y');
+
+        $ormawa_id = $request->input('ormawa_id');
+        
+        $qOrmawa = '';
+        if (!empty($ormawa_id)) {
+            $qOrmawa = " AND o.id = $ormawa_id";
+        }
+        
+        $kegiatan = DB::select("SELECT 
+                k.*,
+                o.nama AS nama_ormawa,
+                r.nama AS nama_ruangan
+            FROM kegiatan k
+            left join ormawa o
+                on o.id = k.ormawa_id
+            left join ruangan r
+                on r.id = k.ruangan_id
+            where date_format(k.tanggal, '%Y-%m') = '$this_month' $qOrmawa
+        ");
         
         $kegiatan = DB::select("SELECT 
                 k.*,
@@ -24,10 +52,41 @@ class DashboardController extends Controller
                 on r.id = k.ruangan_id
             where date_format(k.tanggal, '%Y-%m') = '$this_month'
         ");
+        $ormawa = DB::table('ormawa')->get();
 
         return view('ormawa/dashboard', compact(
             'kegiatan',
-            'this_month_text'
+            'this_month_text',
+            'ormawa',
+            'ormawa_id'
+        ));
+    }
+
+    public function detail_kegiatan($id)
+    {
+		$data = DB::select("SELECT 
+				k.*,
+				o.nama AS nama_ormawa,
+				r.nama AS nama_ruangan
+			FROM kegiatan k
+			left join ormawa o
+				on o.id = k.ormawa_id
+			left join ruangan r
+				on r.id = k.ruangan_id
+            where k.id = $id
+        ");
+        
+        $data = collect($data)->first();
+
+        $title           = $this->title;
+        $prefix          = $this->prefix;
+        $form_action_url = $this->root . '/detail/' . $id;
+
+        return view('ormawa/detail_kegiatan', compact(
+            'data',
+            'title',
+            'form_action_url',
+            'prefix'
         ));
     }
 

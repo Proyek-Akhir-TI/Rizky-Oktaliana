@@ -55,9 +55,23 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ url('admin/pengguna/ubah_password/') }}/{{ Auth::guard('admin')->user()->id }}">
-                  Edit Profil
-                </a>
+                @php
+                  $level = Request::segment(1);
+                @endphp
+
+                @if ($level == 'ormawa')
+                  <a class="dropdown-item" href="{{ url('ormawa/pengguna/update/') }}">
+                    Edit Profil
+                  </a>
+                  <a class="dropdown-item" href="{{ url('ormawa/pengguna/update_password/') }}">
+                    Ubah Password
+                  </a>
+                @else
+                  <a class="dropdown-item" href="{{ url('admin/pengguna/ubah_password/') }}/{{ Auth::guard('admin')->user()->id }}">
+                    Edit Profil
+                  </a>
+                @endif
+
                 <div class="dropdown-divider"></div>
 
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

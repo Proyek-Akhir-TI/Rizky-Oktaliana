@@ -65,7 +65,7 @@ $role = Auth::guard('admin')->user()->hak_akses;
           <span>Laporan</span></a>
       </li> --}}
       {{-- <li class="nav-item {{ ($page == 'pengguna') ? 'active':'' }}">
-          <a class="nav-link" href="{{ url('admin/pengguna') }}">
+          <a class="nav-link" href="{{ url('admin/pengguna') }}">`
           <i class="fas fa-fw fa-archive"></i>
           <span>Kelola Data User</span></a>
       </li> --}}
