@@ -90,7 +90,7 @@
                       <td>{{ $value->nama }}</td> 
                       <td>{{ $value->nama_ruangan }}</td>
                       <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
-                      <td>{{ $value->status }}</td>
+                      <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
                       <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
                       <td>
                           <a href="{{ url('wadir/kegiatan/detail/' . $value->id) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>

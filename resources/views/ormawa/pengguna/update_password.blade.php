@@ -9,9 +9,7 @@
 </div>
 
 <div class="row">
-
   <div class="col-lg-5">
-
     <div class="card shadow mb-4">
       <div class="card-body">
 
