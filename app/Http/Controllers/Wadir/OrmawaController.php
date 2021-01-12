@@ -19,7 +19,14 @@ class OrmawaController extends Controller
 
     public function index()
     {
-        $data = DB::table('ormawa')->get();
+        $data = DB::select("SELECT
+                o.*, ok.nama_ketua
+            FROM ormawa o
+            inner join (
+                select * from ormawa_ketua where status = 1
+            ) ok
+                on ok.ormawa_id = o.id
+        ");
 
         $title  = $this->title;
         $prefix = $this->prefix;

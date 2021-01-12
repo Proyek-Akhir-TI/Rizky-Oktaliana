@@ -34,10 +34,6 @@
                 <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $data->no_hp }}"> 
             </div>
             <div class="form-group">
-                <label for="nama_ketua">Nama Ketua</label>
-                <input type="text" class="form-control" id="nama_ketua" name="nama_ketua" value="{{ $data->nama_ketua }}"> 
-            </div>
-            <div class="form-group">
                 <label for="status">Status Ormawa</label>
                 <select name="status" id="status" class="form-control">
                   <option {{ ($data->status == 1) ? 'selected' : '' }} value="1">Aktif</option>

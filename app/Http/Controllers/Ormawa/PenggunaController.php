@@ -23,7 +23,7 @@ class PenggunaController extends Controller
         $penggunaID = Auth::guard('admin')->user()->id;
 
         $data = DB::select("SELECT 
-                * 
+                o.*, p.username
             FROM ormawa o
             inner join pengguna p
                 on p.id = o.pengguna_id
@@ -32,12 +32,15 @@ class PenggunaController extends Controller
 
         $data = collect($data)->first();
 
+        $ormawa_ketua = DB::table('ormawa_ketua')->where('ormawa_id', $data->id)->get();
+
         $title           = $this->title;
         $prefix          = $this->prefix;
         $form_action_url = $this->root . '/update/';
 
         return view($this->root . '/update', compact(
             'data',
+            'ormawa_ketua',
             'title',
             'form_action_url',
             'prefix'

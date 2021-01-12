@@ -19,7 +19,14 @@ class OrmawaController extends Controller
 
     public function index()
     {
-        $data = DB::table('ormawa')->get();
+        $data = DB::select("SELECT
+                o.*, ok.nama_ketua
+            FROM ormawa o
+            inner join (
+                select * from ormawa_ketua where status = 1
+            ) ok
+                on ok.ormawa_id = o.id
+        ");
 
         $title  = $this->title;
         $prefix = $this->prefix;
@@ -54,6 +61,12 @@ class OrmawaController extends Controller
 
         $data['password'] = bcrypt($data['username']);
 
+        $periode_ketua = $data['periode_ketua'];
+        $nama_ketua = $data['nama_ketua'];
+        
+        unset($data['nama_ketua']);
+        unset($data['periode_ketua']);
+
         $data_pengguna = [
             'name'      => $data['nama'],
             'username'  => $data['username'],
@@ -62,7 +75,15 @@ class OrmawaController extends Controller
         ];
         $data['pengguna_id'] = DB::table('pengguna')->insertGetId($data_pengguna);
 
-        DB::table('ormawa')->insert($data);
+        $ormawa_id = DB::table('ormawa')->insertGetId($data);
+
+        $ketua_ormawa = [
+            'nama_ketua'    => $nama_ketua,
+            'ormawa_id'     => $ormawa_id,
+            'periode' => $periode_ketua,
+            'status'        => 1 // aktif
+        ];
+        DB::table('ormawa_ketua')->insert($ketua_ormawa);
 
         $this->message("success", "Data berhasil disimpan!");
         return redirect($this->root);

@@ -44,7 +44,7 @@ Route::group([
     Route::get('proker/tambah', ['uses' => 'ProkerController@tambah']);
     Route::post('proker/tambah', ['uses' => 'ProkerController@prosesTambah']);
     Route::get('proker/edit/{id}', ['uses' => 'ProkerController@edit']);
-    Route::post('proker/edit/{id}', ['uses' => 'ProkerController@prosesEdit']);
+    Route::post('proker/edit/{id}', ['uses' => 'ProkerCeontroller@prosesEdit']);
     Route::get('proker/hapus/{id}', ['uses' => 'ProkerController@hapus']);
     
     // KEGIATAN
@@ -135,6 +135,13 @@ Route::group([
     Route::post('pengguna/update', ['uses' => 'PenggunaController@prosesUpdate']);
     Route::get('pengguna/update_password', ['uses' => 'PenggunaController@updatePassword']);
     Route::post('pengguna/update_password', ['uses' => 'PenggunaController@prosesUpdatePassword']);
+    
+    // KEGIATAN
+    Route::get('ketua/tambah', ['uses' => 'OrmawaKetuaController@tambah']);
+    Route::post('ketua/tambah', ['uses' => 'OrmawaKetuaController@prosesTambah']);
+    Route::get('ketua/edit/{id}', ['uses' => 'OrmawaKetuaController@edit']);
+    Route::post('ketua/edit/{id}', ['uses' => 'OrmawaKetuaController@prosesEdit']);
+    Route::get('ketua/hapus/{id}', ['uses' => 'OrmawaKetuaController@prosesHapus']);
 
 });
 

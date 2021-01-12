@@ -57,7 +57,7 @@
   
         <div class="card shadow mb-4">
             <div class="card-body">
-                <a href="{{ url('ormawa/ketua/tambah') }}" class="btn btn-sm btn-primary mb-3">Tambah</a>
+                <a href="" class="btn btn-sm btn-primary mb-3">Tambah</a>
 
                 <table class="table">
                     <thead>
@@ -73,8 +73,8 @@
                                 <td>{{ $value->periode }}</td>
                                 <td>{{ ($value->status == 1) ? 'Aktif' : 'Tidak Aktif' }}</td>
                                 <td>
-                                    <a href="{{ url('ormawa/ketua/edit/' . $value->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="{{ url('ormawa/ketua/hapus/' . $value->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="" class="btn btn-sm btn-danger">Hapus</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -36,6 +36,10 @@
                 <input type="text" class="form-control" id="nama_ketua" name="nama_ketua"> 
             </div>
             <div class="form-group">
+                <label for="periode_ketua">Periode Ketua</label>
+                <input type="text" class="form-control" id="periode_ketua" name="periode_ketua"> 
+            </div>
+            <div class="form-group">
                 <label for="status">Status Ormawa</label>
                 <select name="status" id="status" class="form-control">
                   <option value="1">Aktif</option>
