@@ -44,6 +44,11 @@ $role = Auth::guard('admin')->user()->hak_akses;
           <i class="fas fa-fw fa-archive"></i>
           <span>Data Kegiatan</span></a>
       </li>
+      <li class="nav-item {{ ($page == 'laporan_kegiatan') ? 'active':'' }}">
+          <a class="nav-link" href="{{ url('admin/laporan_kegiatan') }}">
+          <i class="fas fa-fw fa-archive"></i>
+          <span>Laporan Kegiatan</span></a>
+      </li>
       {{-- <li class="nav-item {{ ($page == 'ormawa') ? 'active':'' }}">
           <a class="nav-link" href="{{ url('admin/ormawa') }}">
           <i class="fas fa-fw fa-archive"></i>
@@ -53,11 +58,6 @@ $role = Auth::guard('admin')->user()->hak_akses;
           <a class="nav-link" href="{{ url('admin/ruangan') }}">
           <i class="fas fa-fw fa-archive"></i>
           <span>Data Ruangan</span></a>
-      </li>
-      <li class="nav-item {{ ($page == 'laporan_kegiatan') ? 'active':'' }}">
-          <a class="nav-link" href="{{ url('admin/laporan_kegiatan') }}">
-          <i class="fas fa-fw fa-archive"></i>
-          <span>Laporan Kegiatan</span></a>
       </li>
       {{-- <li class="nav-item {{ ($page == 'report') ? 'active':'' }}">
           <a class="nav-link" href="{{ url('admin/report') }}">

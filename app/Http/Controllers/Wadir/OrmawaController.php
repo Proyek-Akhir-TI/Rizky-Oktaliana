@@ -40,8 +40,19 @@ class OrmawaController extends Controller
     }
 
     public function detail(Request $request, $id)
-    {
-        $data = DB::table('ormawa')->where('id', $id)->first();
+    {   
+        $data = DB::select("SELECT
+                o.*, ok.nama_ketua
+            FROM ormawa o
+            inner join (
+                select * from ormawa_ketua where status = 1
+            ) ok
+                on ok.ormawa_id = o.id
+            where o.id = $id
+        ");
+
+        $data = collect($data)->first();
+
         $tahun = empty($request->input('tahun')) ? "" : $request->input('tahun');
 
         $qTahun = "";

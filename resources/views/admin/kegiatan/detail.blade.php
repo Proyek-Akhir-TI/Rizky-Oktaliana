@@ -38,14 +38,14 @@
                 <td>Waktu</td>
                 <td>{{ $data->tanggal }} | {{ date('H:i', strtotime($data->waktu_mulai)) }} - {{ date('H:i', strtotime($data->waktu_akhir)) }}</td>
               </tr>
-              <tr>
+              {{-- <tr>
                 <td>Jumlah Peserta Pendaftar</td>
                 <td>{{ ($data->jml_peserta) }}</td>
               </tr>
               <tr>
                 <td>Jumlah Kehadiran</td>
                 <td>{{ ($data->jml_kehadiran) }}</td>
-              </tr>
+              </tr> --}}
               <tr>
                 <td>Kuota</td>
                 <td>{{ $data->kuota }}</td>
@@ -62,13 +62,13 @@
 
   </div>
   
-  <div class="col-md-7">
+  {{-- <div class="col-md-7">
 
     <div class="card shadow mb-4">
       <div class="card-body">
         <h5 style="letter-spacing: 1px">Peserta</h5>
 
-        <table class="table table-striped table-borderless">
+        {{-- <table class="table table-striped table-borderless">
           <thead>
             <th>Nama</th>
             <th>NIM</th>
@@ -96,10 +96,10 @@
                   </tr>
             @endif
           </tbody>
-        </table>
+        </table> 
       </div>
     </div>
-  </div>
+  </div> --}}
 
 </div>
 @endsection

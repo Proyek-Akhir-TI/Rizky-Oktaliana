@@ -130,6 +130,7 @@ Route::group([
     Route::post('kegiatan/tambah', ['uses' => 'KegiatanOrmawaController@prosesTambah']);
     Route::get('kegiatan/edit/{id}', ['uses' => 'KegiatanOrmawaController@edit']);
     Route::post('kegiatan/edit/{id}', ['uses' => 'KegiatanOrmawaController@prosesEdit']);
+    Route::get('kegiatan/hapus/{id}', ['uses' => 'KegiatanOrmawaController@hapus']);
 
     Route::get('pengguna/update', ['uses' => 'PenggunaController@update']);
     Route::post('pengguna/update', ['uses' => 'PenggunaController@prosesUpdate']);
