@@ -61,7 +61,7 @@
                   <th>Ruangan</th>
                   <th>Waktu</th>
                   <th>Jumlah Peserta</th>
-                  <th>Jumlah Kehadiran</th>
+                  <th>Jumlah Kehadiran Peserta</th>
                   <th>Status Kegiatan</th>
                   <th>Aksi</th>
               </thead>
