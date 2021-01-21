@@ -163,7 +163,17 @@ class OrmawaController extends Controller
 
     public function detail($id)
     {
-        $data = DB::table('ormawa')->where('id', $id)->first();
+        $data = DB::select("SELECT
+                o.*, ok.nama_ketua
+            FROM ormawa o
+            inner join (
+                select * from ormawa_ketua where status = 1
+            ) ok
+                on ok.ormawa_id = o.id
+            where o.id = $id
+        ");
+
+        $data = collect($data)->first();
         
 		$kegiatan = DB::select("SELECT 
                 IF(k.tanggal > curdate(), 'Belum Terlaksana', 'Sudah Terlaksana') AS status,

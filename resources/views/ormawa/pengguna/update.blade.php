@@ -29,8 +29,8 @@
               {{ csrf_field() }}
               
               <div class="form-group">
-                  <label for="username">No. Hp.</label>
-                  <input type="text" class="form-control" id="username" name="username" value="{{ $data->username }}">
+                  <label for="no_hp">No. Hp.</label>
+                  <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $data->no_hp }}">
               </div>
               <div class="form-group">
                   <label for="foto">Logo Himpunan</label>

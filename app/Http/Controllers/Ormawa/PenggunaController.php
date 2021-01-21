@@ -57,8 +57,8 @@ class PenggunaController extends Controller
         ]);
 
         $ormawa_data = [
-            'nama_ketua' => $data['nama_ketua'],
             'username'   => $data['username'],
+            'no_hp'   => $data['no_hp'],
         ];
 
         if (!empty($request->foto)) {
