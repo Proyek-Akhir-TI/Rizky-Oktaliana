@@ -16,12 +16,12 @@
 
   <div class="col-lg-8">
 
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4" style="background-color: #cf6f00;">
       <div class="card-body">
 
         <table>
           <tr>
-            <table class="table">
+            <table class="table text-white">
               <tr>
                 <td width="30%">Nama</td>
                 <td>{{ $data->nama }}</td>
