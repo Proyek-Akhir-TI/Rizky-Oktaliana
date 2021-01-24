@@ -7,13 +7,13 @@
         <h1 class="h3 mb-4 text-gray-800">Data {{ $title }}</h1>
     </div>
     {{-- <div class="col-lg-6 text-right">
-        <a href="{{ url('wadir/' . $prefix . '/tambah') }}" class="btn btn-primary"><i class="fas fa-plus pr-1"></i> Tambah Data</a>
+        <a href="{{ url('admin/' . $prefix . '/tambah') }}" class="btn btn-primary"><i class="fas fa-plus pr-1"></i> Tambah Data</a>
     </div> --}}
 </div>
 
 <div class="row mb-3">
     <div class="col-md-12">
-        <form class="form-inline" method="GET" action="{{ url('wadir/kegiatan/search') }}">
+        <form class="form-inline" method="GET" action="{{ url('admin/laporan_ruangan/search') }}">
             <div class="input-group mb-2 mr-sm-2">
                 <select name="bulan" id="bulan" class="form-control">
                     <option value="">- Semua Bulan -</option>
@@ -39,15 +39,6 @@
                     <option {{ ($tahun == "2019") ? 'selected' : '' }} value="2019">2019</option>
                 </select>
             </div>
-            <div class="input-group mb-2 mr-sm-2">
-                <select name="ormawa_id" id="ormawa_id" class="form-control">
-                    <option value="">- Semua Ormawa -</option>
-                    
-                    @foreach ($ormawa as $value)
-                        <option {{ ($ormawa_id == $value->id) ? 'selected' : "" }} value="{{ $value->id }}">{{ $value->nama }}</option>
-                    @endforeach
-                </select>
-            </div>
             
             <button type="submit" class="btn btn-primary mb-2">Cari</button>
         </form>
@@ -62,45 +53,17 @@
       <div class="card-body">
           <table class="table table-borderless table-hover">
               <thead>
-                  <th>Nama</th> 
-                  <th>Ormawa</th>
-                  <th>Ruangan</th>
-                  <th>Waktu</th>
-                  <th>Jumlah Peserta</th>
-                  <th>Jumlah Kehadiran Peserta</th>
-                  <th>Total Biaya Kegiatan</th>
-                  <th>Status Kegiatan</th>
-                  <th>Aksi</th>
+                  <th>Nama Ruangan</th> 
+                  <th>Jumlah Kegiatan</th>
               </thead>
               <tbody>
                   @if (!empty($data))
-                    @php
-                        $total_biaya = 0;
-                    @endphp
-
                     @foreach ($data as $value)
-                        @php
-                            $total_biaya += $value->total_biaya_kegiatan;
-                        @endphp
                         <tr>
-                            <td>{{ $value->nama }}</td>
-                            <td>{{ $value->nama_ormawa }}</td>
                             <td>{{ $value->nama_ruangan }}</td>
-                            <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
-                            <td>{{ $value->jml_peserta }}</td>
-                            <td>{{ $value->jml_kehadiran }}</td>
-                            <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
-                            <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
-                            <td>
-                                <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
-                                {{-- <a href="{{ url('wadir/' . $prefix . '/hapus/' . $value->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a> --}}
-                            </td>
+                            <td>{{ $value->jml_kegiatan }}</td>
                         </tr>
                     @endforeach
-                    <tr>
-                        <td colspan="6" align="right"><B>Total Keselurahan Biaya</B></td>
-                        <td><B>{{ rupiah($total_biaya) }}</B></td>
-                    </tr>
                   @else
                         <tr>
                             <td colspan="10">Belum ada data</td>

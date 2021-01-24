@@ -56,6 +56,11 @@ Route::group([
     Route::get('laporan_kegiatan/search', ['uses' => 'LaporanKegiatanControlller@search']);
     Route::get('laporan_kegiatan/detail/{id}', ['uses' => 'LaporanKegiatanControlller@detail']); 
 
+    // LAPORAN RUANGAN
+    Route::get('laporan_ruangan', ['uses' => 'LaporanRuanganController@index']);
+    Route::get('laporan_ruangan/search', ['uses' => 'LaporanRuanganController@search']);
+    Route::get('laporan_ruangan/detail/{id}', ['uses' => 'LaporanRuanganController@detail']); 
+
     // ORMAWA
     Route::get('ormawa', ['uses' => 'OrmawaController@index']);
     Route::get('ormawa/tambah', ['uses' => 'OrmawaController@tambah']);
@@ -108,6 +113,11 @@ Route::group([
     // ORMAWA
     Route::get('ormawa', ['uses' => 'OrmawaController@index']);
     Route::get('ormawa/detail/{id}', ['uses' => 'OrmawaController@detail']);
+
+    // LAPORAN RUANGAN
+    Route::get('laporan_ruangan', ['uses' => 'LaporanRuanganController@index']);
+    Route::get('laporan_ruangan/search', ['uses' => 'LaporanRuanganController@search']);
+    Route::get('laporan_ruangan/detail/{id}', ['uses' => 'LaporanRuanganController@detail']); 
 
 });
 

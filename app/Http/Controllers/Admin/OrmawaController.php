@@ -140,7 +140,7 @@ class OrmawaController extends Controller
             ->delete();
 
         DB::table('pengguna')
-            ->where('id', $ormawa->id)
+            ->where('id', $ormawa->pengguna_id)
             ->delete();
 
         $this->message("success", "Data berhasil dihapus!");
