@@ -22,6 +22,7 @@
                   <th>Nama</th>
                   <th>Username</th>
                   <th>Nama Ketua</th>
+                  <th>Periode Ketua</th>
                   <th>No. HP.</th>
                   <th>Status</th>
                   <th>Aksi</th>
@@ -33,6 +34,7 @@
                             <td>{{ $value->nama }}</td>
                             <td>{{ $value->username }}</td>
                             <td>{{ $value->nama_ketua }}</td>
+                            <td>{{ $value->periode }}</td>
                             <td>{{ $value->no_hp }}</td>
                             <td>{{ ($value->status) ? 'Aktif' : 'Non Aktif' }}</td>
                             <td>

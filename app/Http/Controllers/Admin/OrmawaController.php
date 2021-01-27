@@ -20,7 +20,7 @@ class OrmawaController extends Controller
     public function index()
     {
         $data = DB::select("SELECT
-                o.*, ok.nama_ketua
+                o.*, ok.nama_ketua, ok.periode
             FROM ormawa o
             inner join (
                 select * from ormawa_ketua where status = 1
