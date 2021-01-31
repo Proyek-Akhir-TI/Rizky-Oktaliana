@@ -58,7 +58,54 @@
 </div>
 
 <div class="row">
+  <div class="col-md-12">
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <h5 style="letter-spacing: 1px">Riwayat Ketua</h5>
 
+        <div class="row mt-3">
+          <div class="col-md-12">
+              <form class="form-inline" method="GET" action="{{ url('admin/ormawa/detail/' . $data->id) }}">
+                  <input type="hidden" name="ormawa_id" value="{{ $data->id }}">
+
+                  <div class="input-group mb-2 mr-sm-2">
+                      <select name="tahun" id="tahun" class="form-control">
+                          <option value="">- Semua Tahun -</option>
+                          <option {{ ($tahun == "2021") ? 'selected' : '' }} value="2021">2021</option>
+                          <option {{ ($tahun == "2020") ? 'selected' : '' }} value="2020">2020</option>
+                          <option {{ ($tahun == "2019") ? 'selected' : '' }} value="2019">2019</option>
+                      </select>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary mb-2">Cari</button>
+              </form>
+          </div>
+      </div>
+
+        <table class="table table-striped table-borderless">
+          <thead>
+            <th>Nama Ketua</th>
+            <th>Tahun Jabatan</th>
+          </thead>
+          <tbody>
+            @forelse ($ketuas as $value)
+              <tr>
+                  <td>{{ $value->nama_ketua }}</td> 
+                  <td>{{ $value->periode }}</td>
+              </tr>
+            @empty
+              <tr>
+                  <td colspan="10">Belum ada data</td>
+              </tr>
+            @endforelse
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-12">
     <div class="card shadow mb-4">
       <div class="card-body">
@@ -79,7 +126,7 @@
                       <td>{{ $value->nama }}</td> 
                       <td>{{ $value->nama_ruangan }}</td>
                       <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
-                      <td>{{ $value->status }}</td>
+                      <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
                       <td>
                           <a href="{{ url('admin/kegiatan/detail/' . $value->id) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>
                       </td>

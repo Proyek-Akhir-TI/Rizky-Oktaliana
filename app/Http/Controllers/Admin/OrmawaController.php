@@ -161,7 +161,7 @@ class OrmawaController extends Controller
         return redirect($this->root);
     }
 
-    public function detail($id)
+    public function detail($id, Request $request)
     {
         $data = DB::select("SELECT
                 o.*, ok.nama_ketua
@@ -186,7 +186,18 @@ class OrmawaController extends Controller
 			left join ruangan r
 				on r.id = k.ruangan_id
             where k.ormawa_id = $id
-		");
+        ");
+        
+        $ketuas = DB::table('ormawa_ketua')
+            ->where('ormawa_id', $id);
+
+        $tahun = empty($request->tahun) ? '' : $request->tahun;
+
+        if (!empty($tahun)) {
+            $ketuas = $ketuas->where('periode', $tahun);
+        }
+
+        $ketuas = $ketuas->get();
 
         $title           = $this->title;
         $prefix          = $this->prefix;
@@ -196,6 +207,8 @@ class OrmawaController extends Controller
             'data',
             'proker',
             'kegiatan',
+            'ketuas',
+            'tahun',
             'title',
             'form_action_url',
             'prefix'
