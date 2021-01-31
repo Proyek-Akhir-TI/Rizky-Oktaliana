@@ -61,11 +61,11 @@
                   <input type="hidden" name="ormawa_id" value="{{ $data->id }}">
 
                   <div class="input-group mb-2 mr-sm-2">
-                      <select name="tahun" id="tahun" class="form-control">
+                      <select name="tahun_ketua" id="tahun_ketua" class="form-control">
                           <option value="">- Semua Tahun -</option>
-                          <option {{ ($tahun == "2021") ? 'selected' : '' }} value="2021">2021</option>
-                          <option {{ ($tahun == "2020") ? 'selected' : '' }} value="2020">2020</option>
-                          <option {{ ($tahun == "2019") ? 'selected' : '' }} value="2019">2019</option>
+                          <option {{ ($tahun_ketua == "2021") ? 'selected' : '' }} value="2021">2021</option>
+                          <option {{ ($tahun_ketua == "2020") ? 'selected' : '' }} value="2020">2020</option>
+                          <option {{ ($tahun_ketua == "2019") ? 'selected' : '' }} value="2019">2019</option>
                       </select>
                   </div>
 
