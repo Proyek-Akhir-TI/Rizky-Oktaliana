@@ -40,7 +40,7 @@ class OrmawaController extends Controller
     }
 
     public function detail(Request $request, $id)
-    {   
+    {
         $data = DB::select("SELECT
                 o.*, ok.nama_ketua
             FROM ormawa o

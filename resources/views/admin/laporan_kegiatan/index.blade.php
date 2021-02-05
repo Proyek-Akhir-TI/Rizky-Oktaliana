@@ -12,8 +12,8 @@
 </div>
 
 <div class="row mb-3">
-    <div class="col-md-12">
-        <form class="form-inline" method="GET" action="{{ url('admin/kegiatan/search') }}">
+    <div class="col-md-7">
+        <form class="form-inline" method="GET" action="{{ url('admin/laporan_kegiatan/search') }}">
             <div class="input-group mb-2 mr-sm-2">
                 <select name="bulan" id="bulan" class="form-control">
                     <option value="">- Semua Bulan -</option>
@@ -51,6 +51,10 @@
             
             <button type="submit" class="btn btn-primary mb-2">Cari</button>
         </form>
+    </div>
+
+    <div class="col-md-5 text-right">
+        <a href="{{ url("admin/laporan_kegiatan/cetak?ormawa_id=$ormawa_id&bulan=$bulan&tahun=$tahun") }}" target="_blank" class="btn btn-warning">Cetak</a>
     </div>
 </div>
 

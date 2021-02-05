@@ -75,6 +75,13 @@ class LaporanKegiatanControlller extends Controller
                 $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
             }
 
+            $qOrmawa = "";
+            if (!empty($ormawa_id)) {
+                $qOrmawa  = " o.id = $ormawa_id";
+            } else {
+                $qOrmawa  = " o.id is not null";
+            }
+
             $data = DB::select("SELECT 
                     k.*,
                     o.nama AS nama_ormawa,
@@ -84,7 +91,7 @@ class LaporanKegiatanControlller extends Controller
                     on o.id = k.ormawa_id
                 left join ruangan r
                     on r.id = k.ruangan_id
-                where o.id = $ormawa_id $qWaktu
+                where $qOrmawa $qWaktu
             ");
         }
 
@@ -133,13 +140,62 @@ class LaporanKegiatanControlller extends Controller
         ));
     }
 
-    public function hapus($id)
-    {
-        DB::table('kegiatan')
-            ->where('id', $id)
-            ->delete();
 
-        $this->message("success", "Data berhasil dihapus!");
-        return redirect($this->root);
+    public function cetak(Request $request)
+    {
+		$ormawa_id = empty($request['ormawa_id']) ? "": $request['ormawa_id'];
+        $bulan     = empty($request['bulan']) ? ""    : $request['bulan'];
+        $tahun     = empty($request['tahun']) ? ""    : $request['tahun'];
+        
+		// $data = DB::select("SELECT 
+		// 		k.*,
+		// 		o.nama AS nama_ormawa,
+		// 		r.nama AS nama_ruangan
+		// 	FROM kegiatan k
+		// 	left join ormawa o
+		// 		on o.id = k.ormawa_id
+		// 	left join ruangan r
+		// 		on r.id = k.ruangan_id
+        // ");
+        
+        $qWaktu = '';
+        if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
+            
+            if (!empty($bulan) || !empty($tahun)) {
+                $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+            }
+        }
+
+        $qOrmawa = "";
+        if (!empty($ormawa_id)) {
+            $qOrmawa  = " o.id = $ormawa_id";
+        } else {
+            $qOrmawa  = " o.id is not null";
+        }
+
+        $data = DB::select("SELECT 
+                k.*,
+                o.nama AS nama_ormawa,
+                r.nama AS nama_ruangan
+            FROM kegiatan k
+            left join ormawa o
+                on o.id = k.ormawa_id
+            left join ruangan r
+                on r.id = k.ruangan_id
+            where $qOrmawa $qWaktu
+        ");
+
+        $ormawa = DB::table('ormawa')->where('id', $ormawa_id)->first();
+
+        return view($this->root . '/cetak', compact(
+            'data',
+            'ormawa',
+            'ormawa_id',
+            'bulan',
+            'tahun',
+            'title',
+            'form_action_url',
+            'prefix'
+        ));
     }
 }

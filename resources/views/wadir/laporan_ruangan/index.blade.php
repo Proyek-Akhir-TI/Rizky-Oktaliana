@@ -7,13 +7,13 @@
         <h1 class="h3 mb-4 text-gray-800">Data {{ $title }}</h1>
     </div>
     {{-- <div class="col-lg-6 text-right">
-        <a href="{{ url('admin/' . $prefix . '/tambah') }}" class="btn btn-primary"><i class="fas fa-plus pr-1"></i> Tambah Data</a>
+        <a href="{{ url('wadir/' . $prefix . '/tambah') }}" class="btn btn-primary"><i class="fas fa-plus pr-1"></i> Tambah Data</a>
     </div> --}}
 </div>
 
 <div class="row mb-3">
     <div class="col-md-7">
-        <form class="form-inline" method="GET" action="{{ url('admin/laporan_ruangan/search') }}">
+        <form class="form-inline" method="GET" action="{{ url('wadir/laporan_ruangan/search') }}">
             <div class="input-group mb-2 mr-sm-2">
                 <select name="bulan" id="bulan" class="form-control">
                     <option value="">- Semua Bulan -</option>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="col-md-5 text-right">
-        <a href="{{ url("admin/laporan_ruangan/cetak?bulan=$bulan&tahun=$tahun") }}" target="_blank" class="btn btn-warning">Cetak</a>
+        <a href="{{ url("wadir/laporan_ruangan/cetak?bulan=$bulan&tahun=$tahun") }}" target="_blank" class="btn btn-warning">Cetak</a>
     </div>
 </div>
 

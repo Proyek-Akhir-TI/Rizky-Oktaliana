@@ -55,11 +55,13 @@ Route::group([
     Route::get('laporan_kegiatan', ['uses' => 'LaporanKegiatanControlller@index']);
     Route::get('laporan_kegiatan/search', ['uses' => 'LaporanKegiatanControlller@search']);
     Route::get('laporan_kegiatan/detail/{id}', ['uses' => 'LaporanKegiatanControlller@detail']); 
+    Route::get('laporan_kegiatan/cetak', ['uses' => 'LaporanKegiatanControlller@cetak']);
 
     // LAPORAN RUANGAN
     Route::get('laporan_ruangan', ['uses' => 'LaporanRuanganController@index']);
     Route::get('laporan_ruangan/search', ['uses' => 'LaporanRuanganController@search']);
     Route::get('laporan_ruangan/detail/{id}', ['uses' => 'LaporanRuanganController@detail']); 
+    Route::get('laporan_ruangan/cetak', ['uses' => 'LaporanRuanganController@cetak']);
 
     // ORMAWA
     Route::get('ormawa', ['uses' => 'OrmawaController@index']);
@@ -109,6 +111,7 @@ Route::group([
     Route::get('kegiatan', ['uses' => 'KegiatanController@index']);
     Route::get('kegiatan/detail/{id}', ['uses' => 'KegiatanController@detail']); 
     Route::get('kegiatan/search', ['uses' => 'KegiatanController@search']);
+    Route::get('kegiatan/cetak', ['uses' => 'KegiatanController@cetak']);
 
     // ORMAWA
     Route::get('ormawa', ['uses' => 'OrmawaController@index']);
@@ -118,6 +121,7 @@ Route::group([
     Route::get('laporan_ruangan', ['uses' => 'LaporanRuanganController@index']);
     Route::get('laporan_ruangan/search', ['uses' => 'LaporanRuanganController@search']);
     Route::get('laporan_ruangan/detail/{id}', ['uses' => 'LaporanRuanganController@detail']); 
+    Route::get('laporan_ruangan/cetak', ['uses' => 'LaporanRuanganController@cetak']);
 
 });
 
