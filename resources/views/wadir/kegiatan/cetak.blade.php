@@ -47,15 +47,18 @@ table,th,td { border:1px solid black; border-collapse:collapse; } th,td { paddin
 </head>
 <body>
 
-<h1>Laporan kegiatan </h1>
-@if (!empty($bulan))
-<h3>{{ $bulan }}-{{ $tahun }}</h3>
-    
-@endif
-@if (!empty($ormawa_id))
-<p><b>{{ $ormawa->nama }}</b></p>
-    
-@endif
+<center>
+    <h1>Laporan kegiatan </h1>
+    @if (!empty($ormawa_id))
+    <h3>{{ $ormawa->nama }}</h3>
+    @endif
+    @if (!empty($bulan))
+    <p><b>{{ $bulan }}-{{ $tahun }}</b></p>
+    @endif
+    @if (!empty($tahun) && empty($bulan))
+    <p><b>Tahun {{ $tahun }}</b></p>
+    @endif
+</center>
   
 <table width="100%">
 	<tr align="center" style="font-size: 19px; font-weight: 900; ">

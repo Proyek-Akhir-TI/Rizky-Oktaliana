@@ -71,8 +71,10 @@ class LaporanKegiatanControlller extends Controller
         if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
             $qWaktu = '';
             
-            if (!empty($bulan) || !empty($tahun)) {
+            if (!empty($bulan) && !empty($tahun)) {
                 $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+            } elseif (!empty($tahun)) {
+                $qWaktu = " AND DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
 
             $qOrmawa = "";
@@ -161,8 +163,10 @@ class LaporanKegiatanControlller extends Controller
         $qWaktu = '';
         if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
             
-            if (!empty($bulan) || !empty($tahun)) {
+            if (!empty($bulan) && !empty($tahun)) {
                 $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+            } elseif (!empty($tahun)) {
+                $qWaktu = " AND DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
         }
 
