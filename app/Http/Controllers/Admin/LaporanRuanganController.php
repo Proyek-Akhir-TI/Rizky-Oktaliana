@@ -41,7 +41,6 @@ class LaporanRuanganController extends Controller
             'bulan',
             'tahun',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }

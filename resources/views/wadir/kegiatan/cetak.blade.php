@@ -41,24 +41,35 @@ code {
  margin: 14px 0 14px 0;
  padding: 12px 10px 12px 10px;
 }
-table,th,td { border:1px solid black; border-collapse:collapse; } th,td { padding:5px; }
+}
+.tables,
+.tables th,
+.tables td { border:1px solid black; border-collapse:collapse; } th,td { padding:5px; }
 
 </style>
 </head>
 <body>
 
-<center>
-    <h1>Laporan kegiatan </h1>
-    @if (!empty($ormawa_id))
-    <h3>{{ $ormawa->nama }}</h3>
-    @endif
-    @if (!empty($bulan))
-    <p><b>{{ $bulan }}-{{ $tahun }}</b></p>
-    @endif
-    @if (!empty($tahun) && empty($bulan))
-    <p><b>Tahun {{ $tahun }}</b></p>
-    @endif
-</center>
+    <table width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px">
+        <tr>
+            <td width="10%" align="right">
+                <img src="https://www.poliwangi.ac.id/vendors/uploads/2019/11/kop-300x286.png" width="100">
+            </td>
+            <td align="center">
+                <h1>Laporan Kegiatan Kemahasiswaan</h1>
+                <h3>Politeknik Negeri Banyuwangi </h3>
+                @if (!empty($ormawa_id))
+                <h3>{{ $ormawa->nama }}</h3>
+                @endif
+                @if (!empty($bulan))
+                <p><b>{{ $bulan }}-{{ $tahun }}</b></p>
+                @endif
+                @if (!empty($tahun) && empty($bulan))
+                <p><b>Tahun {{ $tahun }}</b></p>
+                @endif
+            </td>
+        </tr>
+    </table>
   
 <table width="100%">
 	<tr align="center" style="font-size: 19px; font-weight: 900; ">

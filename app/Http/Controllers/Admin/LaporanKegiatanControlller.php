@@ -46,7 +46,6 @@ class LaporanKegiatanControlller extends Controller
             'bulan',
             'tahun',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }
@@ -67,6 +66,7 @@ class LaporanKegiatanControlller extends Controller
 		// 	left join ruangan r
 		// 		on r.id = k.ruangan_id
         // ");
+        $data = [];
         
         if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
             $qWaktu = '';
@@ -109,7 +109,6 @@ class LaporanKegiatanControlller extends Controller
             'bulan',
             'tahun',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }
@@ -196,10 +195,7 @@ class LaporanKegiatanControlller extends Controller
             'ormawa',
             'ormawa_id',
             'bulan',
-            'tahun',
-            'title',
-            'form_action_url',
-            'prefix'
+            'tahun'
         ));
     }
 }
