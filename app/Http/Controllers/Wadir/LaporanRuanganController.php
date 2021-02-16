@@ -40,8 +40,7 @@ class LaporanRuanganController extends Controller
             'ormawa_id',
             'bulan',
             'tahun',
-            'title',
-            'form_action_url',
+            'title', 
             'prefix'
         ));
     }

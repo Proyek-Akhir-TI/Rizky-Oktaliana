@@ -23,7 +23,7 @@ a {
 h1 {
  color: #444;
  background-color: transparent;
- border-bottom: 1px solid #D0D0D0;
+ /* border-bottom: 1px solid #D0D0D0; */
  font-size: 22px;
  font-weight: bold;
  margin: 24px 0 2px 0;
@@ -41,18 +41,17 @@ code {
  margin: 14px 0 14px 0;
  padding: 12px 10px 12px 10px;
 }
-}
 .tables,
 .tables th,
-.tables td { border:1px solid black; border-collapse:collapse; } th,td { padding:5px; }
+.tables td { border:1px solid black; border-collapse:collapse; font-size: 10px !important } th,td { padding:5px; }
 
 </style>
 </head>
 <body>
 
-    <table width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px">
+    <table width="100%" style="margin-bottom: 20px">
         <tr>
-            <td width="10%" align="right">
+            <td width="20%" align="right">
                 <img src="https://www.poliwangi.ac.id/vendors/uploads/2019/11/kop-300x286.png" width="100">
             </td>
             <td align="center">
@@ -71,7 +70,7 @@ code {
         </tr>
     </table>
   
-<table width="100%">
+<table width="100%" class="tables">
 	<tr align="center" style="font-size: 19px; font-weight: 900; ">
 		<td>Nama Kegiatan</td>
 		<td>Ormawa</td>

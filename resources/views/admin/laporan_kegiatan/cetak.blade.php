@@ -42,15 +42,15 @@ code {
 }
 .tables,
 .tables th,
-.tables td { border:1px solid black; border-collapse:collapse; } th,td { padding:5px; }
+.tables td { border:1px solid black; border-collapse:collapse; font-size: 10px !important } th,td { padding:5px; }
 
 </style>
 </head>
 <body>
 
-<table width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px">
+<table width="100%" style="margin-bottom: 20px">
     <tr>
-        <td width="10%" align="right">
+        <td width="20%" align="right">
             <img src="https://www.poliwangi.ac.id/vendors/uploads/2019/11/kop-300x286.png" width="100">
         </td>
         <td align="center">

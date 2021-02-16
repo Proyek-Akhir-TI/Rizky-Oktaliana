@@ -60,8 +60,6 @@
                   <th>Nama</th>
                   <th>Ruangan</th>
                   <th>Waktu</th>
-                  <th>Jumlah Peserta</th>
-                  <th>Jumlah Kehadiran Peserta</th>
                   <th>Status Kegiatan</th>
                   <th>Aksi</th>
               </thead>
@@ -71,9 +69,7 @@
                         <tr>
                             <td>{{ $value->nama }}</td>
                             <td>{{ $value->nama_ruangan }}</td>
-                            <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
-                            <td>{{ $value->jml_peserta }}</td>
-                            <td>{{ $value->jml_kehadiran }}</td>
+                            <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td> 
                             <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
                             <td>
                                 <a href="{{ url('ormawa/' . $prefix . '/detail/' . $value->id) }}" class="btn btn-primary btn-sm mr-1">Detail</a>

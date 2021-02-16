@@ -27,7 +27,6 @@ class RuanganController extends Controller
         return view($this->root . '/index', compact(
             'data',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }

@@ -45,8 +45,7 @@ class KegiatanController extends Controller
             'ormawa_id',
             'bulan',
             'tahun',
-            'title',
-            'form_action_url',
+            'title', 
             'prefix'
         ));
     }
@@ -108,8 +107,7 @@ class KegiatanController extends Controller
             'ormawa_id',
             'bulan',
             'tahun',
-            'title',
-            'form_action_url',
+            'title', 
             'prefix'
         ));
     }
@@ -206,10 +204,7 @@ class KegiatanController extends Controller
             'ormawa',
             'ormawa_id',
             'bulan',
-            'tahun',
-            'title',
-            'form_action_url',
-            'prefix'
+            'tahun',   
         ));
     }
 }
