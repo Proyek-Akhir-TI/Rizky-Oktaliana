@@ -110,6 +110,7 @@ class PenggunaController extends Controller
             ]);
             
             $data['password'] = bcrypt($data['password']);
+            $data['password_md5'] = md5($data['password']);
             
             unset($data['re_password']);
         } else {

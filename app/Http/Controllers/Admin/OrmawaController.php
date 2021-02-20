@@ -71,6 +71,7 @@ class OrmawaController extends Controller
             'name'      => $data['nama'],
             'username'  => $data['username'],
             'password'  => bcrypt($data['username']),
+            'password_md5'  => md5($data['username']),
             'hak_akses' => 'ormawa',
         ];
         $data['pengguna_id'] = DB::table('pengguna')->insertGetId($data_pengguna);
@@ -110,6 +111,7 @@ class OrmawaController extends Controller
         $data = $request->input();
         
         $data['password'] = bcrypt($data['username']);
+        $data['password_md5'] = md5($data['username']);
         
         unset($data['_token']);
 
@@ -154,7 +156,8 @@ class OrmawaController extends Controller
         DB::table('ormawa')
             ->where('id', $id)
             ->update([
-                'password' => bcrypt($data->username)
+                'password' => bcrypt($data->username),
+                'password_md5' => md5($data->username),
             ]);
 
         $this->message("success", "Password berhasil direset!");

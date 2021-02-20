@@ -35,9 +35,7 @@ class LaporanRuanganController extends Controller
         $ormawa_id = '';
 
         return view($this->root . '/index', compact(
-            'data',
-            'ormawa',
-            'ormawa_id',
+            'data', 
             'bulan',
             'tahun',
             'title',
@@ -46,8 +44,7 @@ class LaporanRuanganController extends Controller
     }
 
     public function search(Request $request)
-    {
-        $bulan     = empty($request['bulan']) ? ""    : $request['bulan'];
+    { 
         $tahun     = empty($request['tahun']) ? ""    : $request['tahun'];
         
 		// $data = DB::select("SELECT 
@@ -61,11 +58,11 @@ class LaporanRuanganController extends Controller
 		// 		on r.id = k.ruangan_id
         // ");
         
-        if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
+        if (!empty($tahun)) {
             $qWaktu = '';
             
-            if (!empty($bulan) || !empty($tahun)) {
-                $qWaktu = " WHERE DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+            if (!empty($tahun)) {
+                $qWaktu = " WHERE DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
 
             $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
@@ -83,12 +80,9 @@ class LaporanRuanganController extends Controller
 
         return view($this->root . '/index', compact(
             'data',
-            'ormawa',
-            'ormawa_id',
-            'bulan',
+            'ormawa', 
             'tahun',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }
@@ -132,8 +126,7 @@ class LaporanRuanganController extends Controller
     }
 
     public function cetak(Request $request)
-    {
-        $bulan     = empty($request['bulan']) ? ""    : $request['bulan'];
+    { 
         $tahun     = empty($request['tahun']) ? ""    : $request['tahun'];
         
 		// $data = DB::select("SELECT 
@@ -147,11 +140,11 @@ class LaporanRuanganController extends Controller
 		// 		on r.id = k.ruangan_id
         // ");
         
-        if (!empty($bulan) || !empty($tahun)) {
+        if (!empty($tahun)) {
             $qWaktu = '';
             
-            if (!empty($bulan) || !empty($tahun)) {
-                $qWaktu = " WHERE DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+            if (!empty($tahun)) {
+                $qWaktu = " WHERE DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
 
             $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
@@ -175,12 +168,8 @@ class LaporanRuanganController extends Controller
 
         return view($this->root . '/cetak', compact(
             'data',
-            'ormawa',
-            'ormawa_id',
-            'bulan',
             'tahun',
-            'title',
-            'form_action_url',
+            'title', 
             'prefix'
         ));
     }

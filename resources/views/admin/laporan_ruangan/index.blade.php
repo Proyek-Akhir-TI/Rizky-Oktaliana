@@ -15,23 +15,6 @@
     <div class="col-md-7">
         <form class="form-inline" method="GET" action="{{ url('admin/laporan_ruangan/search') }}">
             <div class="input-group mb-2 mr-sm-2">
-                <select name="bulan" id="bulan" class="form-control">
-                    <option value="">- Semua Bulan -</option>
-                    <option {{ ($bulan == '01') ? 'selected' : '' }} value="01">Januari</option>
-                    <option {{ ($bulan == '02') ? 'selected' : '' }} value="02">Februari</option>
-                    <option {{ ($bulan == '03') ? 'selected' : '' }} value="03">Maret</option>
-                    <option {{ ($bulan == '04') ? 'selected' : '' }} value="04">April</option>
-                    <option {{ ($bulan == '05') ? 'selected' : '' }} value="05">Mei</option>
-                    <option {{ ($bulan == '06') ? 'selected' : '' }} value="06">Juni</option>
-                    <option {{ ($bulan == '07') ? 'selected' : '' }} value="07">Juli</option>
-                    <option {{ ($bulan == '08') ? 'selected' : '' }} value="08">Agustus</option>
-                    <option {{ ($bulan == '09') ? 'selected' : '' }} value="09">September</option>
-                    <option {{ ($bulan == '10') ? 'selected' : '' }} value="10">Oktober</option>
-                    <option {{ ($bulan == '11') ? 'selected' : '' }} value="11">November</option>
-                    <option {{ ($bulan == '12') ? 'selected' : '' }} value="12">Desember</option>
-                </select>
-            </div>
-            <div class="input-group mb-2 mr-sm-2">
                 <select name="tahun" id="tahun" class="form-control">
                     <option value="">- Semua Tahun -</option>
                     <option {{ ($tahun == "2021") ? 'selected' : '' }} value="2021">2021</option>
@@ -45,7 +28,7 @@
     </div>
 
     <div class="col-md-5 text-right">
-        <a href="{{ url("admin/laporan_ruangan/cetak?bulan=$bulan&tahun=$tahun") }}" target="_blank" class="btn btn-warning">Cetak</a>
+        <a href="{{ url("admin/laporan_ruangan/cetak?tahun=$tahun") }}" target="_blank" class="btn btn-warning">Cetak</a>
     </div>
 </div>
 

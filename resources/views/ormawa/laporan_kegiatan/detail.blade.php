@@ -39,20 +39,20 @@
                 <td>{{ $data->tanggal }} | {{ date('H:i', strtotime($data->waktu_mulai)) }} - {{ date('H:i', strtotime($data->waktu_akhir)) }}</td>
               </tr>
               <tr>
+                <td>Total Biaya Kegiatan</td>
+                <td>{{ rupiah($data->total_biaya_kegiatan) }}</td>
+              </tr>
+              <tr>
                 <td>Jumlah Peserta Pendaftar</td>
                 <td>{{ ($data->jml_peserta) }}</td>
               </tr>
               <tr>
-                <td>Jumlah Kehadiran</td>
+                <td>Jumlah Kehadiran Peserta</td>
                 <td>{{ ($data->jml_kehadiran) }}</td>
               </tr>
               <tr>
                 <td>Kuota</td>
                 <td>{{ $data->kuota }}</td>
-              </tr>
-              <tr>
-                <td>Biaya</td>
-                <td>{{ $data->biaya_keikutsertaan }}</td>
               </tr>
             </table>
           </tr>

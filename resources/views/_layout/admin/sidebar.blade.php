@@ -110,6 +110,21 @@ $role = Auth::guard('admin')->user()->hak_akses;
           <i class="fas fa-fw fa-archive"></i>
           <span>Data Kegiatan</span></a>
       </li>
+      <li class="nav-item {{ ($page == 'pemesanan') ? 'active':'' }}">
+          <a class="nav-link" href="{{ url('ormawa/pemesanan') }}">
+          <i class="fas fa-fw fa-archive"></i>
+          <span>Data Pemesanan</span></a>
+      </li>
+      <li class="nav-item {{ ($page == 'bank') ? 'active':'' }}">
+          <a class="nav-link" href="{{ url('ormawa/bank') }}">
+          <i class="fas fa-fw fa-archive"></i>
+          <span>Data Bank</span></a>
+      </li>
+      <li class="nav-item {{ ($page == 'laporan_kegiatan') ? 'active':'' }}">
+          <a class="nav-link" href="{{ url('ormawa/laporan_kegiatan') }}">
+          <i class="fas fa-fw fa-archive"></i>
+          <span>Laporan Kegiatan</span></a>
+      </li>
     @endif
 
     <hr class="sidebar-divider">

@@ -157,6 +157,26 @@ Route::group([
     Route::get('ketua/edit/{id}', ['uses' => 'OrmawaKetuaController@edit']);
     Route::post('ketua/edit/{id}', ['uses' => 'OrmawaKetuaController@prosesEdit']);
     Route::get('ketua/hapus/{id}', ['uses' => 'OrmawaKetuaController@prosesHapus']);
+    
+    // KEGIATAN
+    Route::get('pemesanan', ['uses' => 'PemesananController@index']);
+    Route::get('pemesanan/detail/{id}', ['uses' => 'PemesananController@detail']);
+    Route::get('pemesanan/confirm/{id}', ['uses' => 'PemesananController@confirm']);
+    Route::get('pemesanan/unconfirm/{id}', ['uses' => 'PemesananController@unconfirm']);
+    
+    // LAPORAN KEGIATAN
+    Route::get('laporan_kegiatan', ['uses' => 'LaporanKegiatanControlller@index']);
+    Route::get('laporan_kegiatan/search', ['uses' => 'LaporanKegiatanControlller@search']);
+    Route::get('laporan_kegiatan/detail/{id}', ['uses' => 'LaporanKegiatanControlller@detail']); 
+    Route::get('laporan_kegiatan/cetak', ['uses' => 'LaporanKegiatanControlller@cetak']);
+
+    // BANK
+    Route::get('bank', ['uses' => 'BankController@index']);
+    Route::get('bank/tambah', ['uses' => 'BankController@tambah']);
+    Route::post('bank/tambah', ['uses' => 'BankController@prosesTambah']);
+    Route::get('bank/edit/{id}', ['uses' => 'BankController@edit']);
+    Route::post('bank/edit/{id}', ['uses' => 'BankController@prosesEdit']);
+    Route::get('bank/hapus/{id}', ['uses' => 'BankController@hapus']);
 
 });
 

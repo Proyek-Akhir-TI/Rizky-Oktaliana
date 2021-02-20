@@ -46,7 +46,6 @@ class KegiatanController extends Controller
             'bulan',
             'tahun',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }

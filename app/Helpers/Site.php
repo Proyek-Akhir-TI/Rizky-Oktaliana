@@ -105,3 +105,37 @@ function month_text($month)
             break;
     }
 }
+
+function get_status($id)
+{
+    switch ($id) {
+        case '1':
+            return [
+                'name' => 'Belum Bayar',
+                'color' => 'warning'
+            ];
+            break;
+        case '2':
+            return [
+                'name' => 'Menunggu Konfirmasi',
+                'color' => 'info'
+            ];
+            break;
+        case '3':
+            return [
+                'name' => 'Berhasil',
+                'color' => 'success'
+            ];
+            break;
+        case '4':
+            return [
+                'name' => 'Gagal/Kadaluarsa',
+                'color' => 'danger'
+            ];
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+}
