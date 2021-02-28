@@ -19,10 +19,12 @@ class LaporanRuanganController extends Controller
 
     public function index()
     {
-		$data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
+		$data = DB::select("SELECT 
+                    r.nama AS nama_ruangan, COUNT(r.id_ruangan) AS jml_kegiatan 
+                FROM kegiatan k
                 INNER JOIN ruangan r
-                    ON r.id = k.ruangan_id
-                GROUP BY k.ruangan_id
+                    ON r.id_ruangan = k.id_ruangan
+                GROUP BY k.id_ruangan
 		");
 
         $ormawa = DB::table('ormawa')->get();
@@ -57,7 +59,7 @@ class LaporanRuanganController extends Controller
 		// 	left join ormawa o
 		// 		on o.id = k.ormawa_id
 		// 	left join ruangan r
-		// 		on r.id = k.ruangan_id
+		// 		on r.id_ruangan = k.id_ruangan
         // ");
         
         if (!empty($tahun)) {
@@ -67,11 +69,11 @@ class LaporanRuanganController extends Controller
                 $qWaktu = " WHERE DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
 
-            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
+            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id_ruangan) AS jml_kegiatan FROM kegiatan k
             INNER JOIN ruangan r
-                ON r.id = k.ruangan_id
+                ON r.id_ruangan = k.id_ruangan
                  $qWaktu
-            GROUP BY k.ruangan_id
+            GROUP BY k.id_ruangan
             ");
         }
 
@@ -100,18 +102,18 @@ class LaporanRuanganController extends Controller
                 $qWaktu = " WHERE DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
 
-            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
+            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id_ruangan) AS jml_kegiatan FROM kegiatan k
                 INNER JOIN ruangan r
-                    ON r.id = k.ruangan_id
+                    ON r.id_ruangan = k.id_ruangan
                     $qWaktu
-                GROUP BY k.ruangan_id
+                GROUP BY k.id_ruangan
             ");
         } else {
 
-            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
+            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id_ruangan) AS jml_kegiatan FROM kegiatan k
                     INNER JOIN ruangan r
-                        ON r.id = k.ruangan_id
-                    GROUP BY k.ruangan_id
+                        ON r.id_ruangan = k.id_ruangan
+                    GROUP BY k.id_ruangan
             ");
 
         }

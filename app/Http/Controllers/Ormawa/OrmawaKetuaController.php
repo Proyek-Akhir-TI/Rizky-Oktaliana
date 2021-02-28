@@ -34,7 +34,7 @@ class OrmawaKetuaController extends Controller
 
     public function prosesTambah(Request $request)
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
         $data       = $request->input();
 
         $ormawa = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first();
@@ -70,7 +70,7 @@ class OrmawaKetuaController extends Controller
 
     public function edit($id)
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
         $data = DB::table('ormawa_ketua')->where('id', $id)->first();
 
@@ -88,7 +88,7 @@ class OrmawaKetuaController extends Controller
 
     public function prosesEdit($ketua_id, Request $request)
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
         $data       = $request->input();
 
         $ormawa = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first();

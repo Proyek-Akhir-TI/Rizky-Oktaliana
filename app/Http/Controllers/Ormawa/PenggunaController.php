@@ -20,7 +20,7 @@ class PenggunaController extends Controller
 
     public function update()
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
         $data = DB::select("SELECT 
                 o.*, p.username
@@ -49,7 +49,7 @@ class PenggunaController extends Controller
 
     public function prosesUpdate(Request $request)
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
         $data       = $request->input();
 
         $request->validate([
@@ -83,7 +83,7 @@ class PenggunaController extends Controller
 
     public function updatePassword()
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
         $data = DB::table('pengguna')->where('id', $penggunaID)->first();
 
         $title           = $this->title;
@@ -100,7 +100,7 @@ class PenggunaController extends Controller
 
     public function prosesUpdatePassword(Request $request)
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
         $data = $request->input();
 
         if (!empty($data['password'])) {

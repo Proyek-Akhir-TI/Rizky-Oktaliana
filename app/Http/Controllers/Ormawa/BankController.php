@@ -20,7 +20,7 @@ class BankController extends Controller
 
     public function index()
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
         $data = DB::select("SELECT 
             bu.*, b.nama_bank
@@ -59,7 +59,7 @@ class BankController extends Controller
     public function prosesTambah(Request $request)
     {
         $data = $request->input();
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
         unset($data['_token']);
 

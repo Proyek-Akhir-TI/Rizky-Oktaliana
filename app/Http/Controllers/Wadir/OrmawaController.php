@@ -25,7 +25,7 @@ class OrmawaController extends Controller
             inner join (
                 select * from ormawa_ketua where status = 1
             ) ok
-                on ok.ormawa_id = o.id
+                on ok.id_ormawa = o.id_ormawa
         ");
 
         $title  = $this->title;
@@ -46,8 +46,8 @@ class OrmawaController extends Controller
             inner join (
                 select * from ormawa_ketua where status = 1
             ) ok
-                on ok.ormawa_id = o.id
-            where o.id = $id
+                on ok.id_ormawa = o.id_ormawa
+            where o.id_ormawa = $id
         ");
 
         $data = collect($data)->first();
@@ -67,25 +67,25 @@ class OrmawaController extends Controller
 				r.nama AS nama_ruangan
 			FROM kegiatan k
 			left join ormawa o
-				on o.id = k.ormawa_id
+				on o.id_pengguna = k.id_pengguna
 			left join ruangan r
-				on r.id = k.ruangan_id
-            where k.ormawa_id = $id $qTahun
+				on r.id_ruangan = k.id_ruangan
+            where k.id_pengguna = $id $qTahun
 		");
         
 		$total_biaya_kegiatan = DB::select("SELECT 
 				sum(k.total_biaya_kegiatan) AS total_biaya_kegiatan
 			FROM kegiatan k
 			left join ormawa o
-				on o.id = k.ormawa_id
+				on o.id_pengguna = k.id_pengguna
 			left join ruangan r
-				on r.id = k.ruangan_id
-            where k.ormawa_id = $id $qTahun
+				on r.id_ruangan = k.id_ruangan
+            where k.id_pengguna = $id $qTahun
         ");
         
 
         $ketuas = DB::table('ormawa_ketua')
-        ->where('ormawa_id', $id);
+        ->where('id_ormawa', $id);
 
         $tahun_ketua = empty($request->tahun_ketua) ? '' : $request->tahun_ketua;
 
@@ -103,7 +103,6 @@ class OrmawaController extends Controller
 
         return view($this->root . '/detail', compact(
             'data',
-            'proker',
             'kegiatan',
             'total_biaya_kegiatan',
             'title',

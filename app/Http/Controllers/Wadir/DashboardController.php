@@ -19,9 +19,9 @@ class DashboardController extends Controller
                 r.nama AS nama_ruangan
             FROM kegiatan k
             left join ormawa o
-                on o.id = k.ormawa_id
+                on o.id_pengguna = k.id_kegiatan
             left join ruangan r
-                on r.id = k.ruangan_id
+                on r.id_ruangan = k.id_kegiatan
             where date_format(k.tanggal, '%Y-%m') = '$this_month'
         ");
 
@@ -45,7 +45,7 @@ class DashboardController extends Controller
         
         $qOrmawa = '';
         if (!empty($ormawa_id)) {
-            $qOrmawa = " AND o.id = $ormawa_id";
+            $qOrmawa = " AND o.id_ormawa = $ormawa_id";
         }
         
         $kegiatan = DB::select("SELECT 
@@ -54,9 +54,9 @@ class DashboardController extends Controller
                 r.nama AS nama_ruangan
             FROM kegiatan k
             left join ormawa o
-                on o.id = k.ormawa_id
+                on o.id_pengguna = k.id_pengguna
             left join ruangan r
-                on r.id = k.ruangan_id
+                on r.id_ruangan = k.id_kegiatan
             where date_format(k.tanggal, '%Y-%m') = '$this_month' $qOrmawa
         ");
 
@@ -81,9 +81,9 @@ class DashboardController extends Controller
 				r.nama AS nama_ruangan
 			FROM proker p
 			left join ormawa o
-				on o.id = p.ormawa_id
+				on o.id_ormawa = p.ormawa_id
 			left join ruangan r
-				on r.id = p.ruangan_id
+				on r.id_ruangan = p.ruangan_id
         where date_format(p.tanggal_mulai, '%Y-%m-%d') between '$start' and '$end'");
 
         $data = collect($data)->map(function ($val)

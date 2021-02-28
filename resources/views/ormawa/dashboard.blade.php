@@ -62,24 +62,6 @@
             </div> --}}
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <form class="form-inline" method="GET" action="{{ url('ormawa/dashboard/search_kegiatan') }}">
-                    <div class="input-group mb-2 mr-sm-2">
-                        <select name="ormawa_id" id="ormawa_id" class="form-control">
-                            <option value="">- Semua Ormawa -</option>
-                            
-                            @foreach ($ormawa as $value)
-                                <option {{ ($ormawa_id == $value->id) ? 'selected' : "" }} value="{{ $value->id }}">{{ $value->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary mb-2">Cari</button>
-                </form>
-            </div>
-        </div>
-
         @forelse ($kegiatan as $value)
             <div class="card mb-4">
                 <div class="card-body">
@@ -94,7 +76,7 @@
                             <p class="pt-3">{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</p>
 
                             <div class="pt-0">
-                                <a href="{{ url('ormawa/dashboard/detail_kegiatan/' . $value->id) }}" class="card-link">Lihat Detail</a>
+                                <a href="{{ url('ormawa/dashboard/detail_kegiatan/' . $value->id_kegiatan) }}" class="card-link">Lihat Detail</a>
                             </div>
                         </div>
                     </div>

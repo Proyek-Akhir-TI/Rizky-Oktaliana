@@ -54,14 +54,14 @@
                 
                 @if (Auth::guard('admin')->user()->hak_akses == 'ormawa')
                   @php
-                    $penggunaID = Auth::guard('admin')->user()->id;
+                    $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
                     $data = collect(DB::select("SELECT 
                             o.*, p.username
                         FROM ormawa o
                         inner join pengguna p
-                            on p.id = o.pengguna_id
-                        where o.pengguna_id = $penggunaID
+                            on p.id_pengguna = o.id_pengguna
+                        where o.id_pengguna = $penggunaID
                     "))->first();
                   @endphp
                   <img class="img-profile rounded-circle" src="{{ url('uploads/logo/' . $data->foto ) }}">

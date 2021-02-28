@@ -17,7 +17,6 @@
           <table class="table table-borderless table-hover">
               <thead>
                   <th>Nama</th>
-                  <th>Username</th>
                   <th>Nama Ketua</th>
                   <th>No. HP.</th>
                   <th>Status</th>
@@ -28,13 +27,12 @@
                     @foreach ($data as $value)
                         <tr>
                             <td>{{ $value->nama }}</td>
-                            <td>{{ $value->username }}</td>
                             <td>{{ $value->nama_ketua }}</td>
                             <td>{{ $value->no_hp }}</td>
                             <td>{{ ($value->status) ? 'Aktif' : 'Non Aktif' }}</td>
                             <td>
                                 {{-- <a href="{{ url('wadir/' . $prefix . '/reset_password/' . $value->id) }}" class="btn btn-outline-primary btn-sm mr-1" onclick="return confirm('Apakah anda yakin?');">Reset Password</a> --}}
-                                <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>
+                                <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id_ormawa) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>
                             </td>
                         </tr>
                     @endforeach

@@ -44,7 +44,7 @@
                     <option value="">- Semua Ormawa -</option>
                     
                     @foreach ($ormawa as $value)
-                        <option {{ ($ormawa_id == $value->id) ? 'selected' : "" }} value="{{ $value->id }}">{{ $value->nama }}</option>
+                        <option {{ ($ormawa_id == $value->id_ormawa) ? 'selected' : "" }} value="{{ $value->id_ormawa }}">{{ $value->nama }}</option>
                     @endforeach
                 </select>
             </div>
@@ -96,7 +96,7 @@
                             <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
                             <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
                             <td>
-                                <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
+                                <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id_kegiatan) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
                                 {{-- <a href="{{ url('wadir/' . $prefix . '/hapus/' . $value->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a> --}}
                             </td>
                         </tr>

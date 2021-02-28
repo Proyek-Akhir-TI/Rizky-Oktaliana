@@ -20,7 +20,7 @@ class PemesananController extends Controller
 
     public function index()
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
         $data = DB::select("SELECT 
                 t.id_transaksi as transaksi_id, pg.name as nama_peserta, k.nama as nama_kegiatan, p.tgl_pesan, t.batas_transaksi, t.bukti_pembayaran, p.id_status
@@ -28,12 +28,12 @@ class PemesananController extends Controller
             inner join pemesanan p
                 on p.id_pemesanan = t.id_pemesanan
             left join kegiatan k
-                on k.id = p.id_kegiatan
+                on k.id_kegiatan = p.id_kegiatan
             left join pengguna pg
-                on pg.id = p.id_pengguna
+                on pg.id_pengguna = p.id_pengguna
             left join ormawa o
-                on k.ormawa_id = o.id
-            WHERE o.pengguna_id = $penggunaID
+                on k.id_pengguna = o.id_pengguna
+            WHERE o.id_pengguna = $penggunaID
         ");
 
         $title  = $this->title;
@@ -48,7 +48,7 @@ class PemesananController extends Controller
 
     public function detail($trx_id)
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
         $data = DB::select("SELECT 
                 t.id_transaksi as transaksi_id, pg.name as nama_peserta, k.nama as nama_kegiatan, p.tgl_pesan, t.batas_transaksi, t.bukti_pembayaran, p.id_status
@@ -56,9 +56,9 @@ class PemesananController extends Controller
             inner join pemesanan p
                 on p.id_pemesanan = t.id_pemesanan
             left join kegiatan k
-                on k.id = p.id_kegiatan
+                on k.id_kegiatan = p.id_kegiatan
             left join pengguna pg
-                on pg.id = p.id_pengguna
+                on pg.id_pengguna = p.id_pengguna
             left join ormawa o
                 on k.ormawa_id = o.id
             WHERE t.id_transaksi = $trx_id
@@ -84,9 +84,9 @@ class PemesananController extends Controller
             inner join pemesanan p
                 on p.id_pemesanan = t.id_pemesanan
             left join kegiatan k
-                on k.id = p.id_kegiatan
+                on k.id_kegiatan = p.id_kegiatan
             left join pengguna pg
-                on pg.id = p.id_pengguna
+                on pg.id_pengguna = p.id_pengguna
             left join ormawa o
                 on k.ormawa_id = o.id
             WHERE t.id_transaksi = $trx_id
@@ -111,9 +111,9 @@ class PemesananController extends Controller
             inner join pemesanan p
                 on p.id_pemesanan = t.id_pemesanan
             left join kegiatan k
-                on k.id = p.id_kegiatan
+                on k.id_kegiatan = p.id_kegiatan
             left join pengguna pg
-                on pg.id = p.id_pengguna
+                on pg.id_pengguna = p.id_pengguna
             left join ormawa o
                 on k.ormawa_id = o.id
             WHERE t.id_transaksi = $trx_id

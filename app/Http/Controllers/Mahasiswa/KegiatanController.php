@@ -20,7 +20,7 @@ class KegiatanController extends Controller
 
     public function index()
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
 		$data = DB::select("SELECT 
 				k.*,
@@ -114,7 +114,7 @@ class KegiatanController extends Controller
         $title           = $this->title;
         $prefix          = $this->prefix;
         $form_action_url = $this->root . '/tambah';
-        $penggunaID      = Auth::guard('admin')->user()->id;
+        $penggunaID      = Auth::guard('admin')->user()->id_pengguna;
 
         $ormawa_id = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first()->id;
 
@@ -161,7 +161,7 @@ class KegiatanController extends Controller
         $title           = $this->title;
         $prefix          = $this->prefix;
         $form_action_url = $this->root . '/edit/' . $id;
-        $penggunaID      = Auth::guard('admin')->user()->id;
+        $penggunaID      = Auth::guard('admin')->user()->id_pengguna;
 
         $data = DB::table('kegiatan')->where('id', $id)->first();
 

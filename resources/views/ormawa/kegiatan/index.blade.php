@@ -8,7 +8,7 @@
     </div>
     {{-- <div class="col-lg-6 text-right">
         <a href="{{ url('ormawa/' . $prefix . '/tambah') }}" class="btn btn-primary"><i class="fas fa-plus pr-1"></i> Tambah Data</a>
-    </div> --}}
+    </div> --}} 
 </div>
 
 <div class="row mb-3">
@@ -72,9 +72,9 @@
                             <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td> 
                             <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
                             <td>
-                                <a href="{{ url('ormawa/' . $prefix . '/detail/' . $value->id) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
-                                <a href="{{ url('ormawa/' . $prefix . '/edit/' . $value->id) }}" class="btn btn-warning btn-sm mr-1">Edit</a>
-                                <a href="{{ url('ormawa/' . $prefix . '/hapus/' . $value->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a>
+                                <a href="{{ url('ormawa/' . $prefix . '/detail/' . $value->id_kegiatan) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
+                                <a href="{{ url('ormawa/' . $prefix . '/edit/' . $value->id_kegiatan) }}" class="btn btn-warning btn-sm mr-1">Edit</a>
+                                <a href="{{ url('ormawa/' . $prefix . '/hapus/' . $value->id_kegiatan) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a>
                             </td>
                         </tr>
                     @endforeach

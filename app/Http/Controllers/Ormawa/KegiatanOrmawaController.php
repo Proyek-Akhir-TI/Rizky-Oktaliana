@@ -20,7 +20,7 @@ class KegiatanOrmawaController extends Controller
 
     public function index()
     {
-        $penggunaID = Auth::guard('admin')->user()->id;
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
 		$data = DB::select("SELECT 
 				k.*,
@@ -28,10 +28,10 @@ class KegiatanOrmawaController extends Controller
 				r.nama AS nama_ruangan
 			FROM kegiatan k
 			left join ormawa o
-				on o.id = k.ormawa_id
+				on o.id_pengguna = k.id_pengguna
 			left join ruangan r
-				on r.id = k.ruangan_id
-            WHERE o.pengguna_id = $penggunaID
+				on r.id_ruangan = k.id_ruangan
+            WHERE o.id_pengguna = $penggunaID
         ");
 
         $ormawa = DB::table('ormawa')->get();
@@ -57,7 +57,7 @@ class KegiatanOrmawaController extends Controller
 
     public function search(Request $request)
     {
-        $ormawa_id = empty($request['ormawa_id']) ? "": $request['ormawa_id'];
+        $penggunaID = Auth::guard('admin')->user()->id_pengguna;
         $bulan     = empty($request['bulan']) ? ""    : $request['bulan'];
         $tahun     = empty($request['tahun']) ? ""    : $request['tahun'];
         
@@ -72,10 +72,13 @@ class KegiatanOrmawaController extends Controller
 		// 		on r.id = k.ruangan_id
         // ");
         
-        if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
+        if ( !empty($bulan) || !empty($tahun)) {
             $qWaktu = '';
             
-            if (!empty($bulan) || !empty($tahun)) {
+            if (!empty($tahun)) {
+                $qWaktu = " AND DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
+            }
+            if (!empty($bulan) && !empty($tahun)) {
                 $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
             }
 
@@ -85,14 +88,16 @@ class KegiatanOrmawaController extends Controller
                     r.nama AS nama_ruangan
                 FROM kegiatan k
                 left join ormawa o
-                    on o.id = k.ormawa_id
+                    on o.id_pengguna = k.id_pengguna
                 left join ruangan r
-                    on r.id = k.ruangan_id
-                where o.id = $ormawa_id $qWaktu
+                    on r.id_ruangan = k.id_ruangan
+                where o.id_pengguna = $penggunaID $qWaktu
             ");
         }
 
         $ormawa = DB::table('ormawa')->get();
+
+        $ormawa_id = $penggunaID;
 
         $title  = $this->title;
         $prefix = $this->prefix;
@@ -104,7 +109,6 @@ class KegiatanOrmawaController extends Controller
             'bulan',
             'tahun',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }
@@ -114,9 +118,9 @@ class KegiatanOrmawaController extends Controller
         $title           = $this->title;
         $prefix          = $this->prefix;
         $form_action_url = $this->root . '/tambah';
-        $penggunaID      = Auth::guard('admin')->user()->id;
+        $penggunaID      = Auth::guard('admin')->user()->id_pengguna;
 
-        $ormawa_id = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first()->id;
+        $ormawa_id = DB::table('ormawa')->where('id_pengguna', $penggunaID)->first()->id_ormawa;
 
         $ruangan = DB::table('ruangan')->get();
 
@@ -161,11 +165,11 @@ class KegiatanOrmawaController extends Controller
         $title           = $this->title;
         $prefix          = $this->prefix;
         $form_action_url = $this->root . '/edit/' . $id;
-        $penggunaID      = Auth::guard('admin')->user()->id;
+        $penggunaID      = Auth::guard('admin')->user()->id_pengguna;
 
-        $data = DB::table('kegiatan')->where('id', $id)->first();
+        $data = DB::table('kegiatan')->where('id_kegiatan', $id)->first();
 
-        $ormawa_id = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first()->id;
+        $ormawa_id = DB::table('ormawa')->where('id_pengguna', $penggunaID)->first()->id_ormawa;
 
         $ruangan = DB::table('ruangan')->get();
 
@@ -205,7 +209,7 @@ class KegiatanOrmawaController extends Controller
         }
         
         DB::table('kegiatan')
-            ->where('id', $id)
+            ->where('id_kegiatan', $id)
             ->update($data);
 
         return redirect($this->root);
@@ -219,10 +223,10 @@ class KegiatanOrmawaController extends Controller
 				r.nama AS nama_ruangan
 			FROM kegiatan k
 			left join ormawa o
-				on o.id = k.ormawa_id
+				on o.id_pengguna = k.id_pengguna
 			left join ruangan r
-				on r.id = k.ruangan_id
-            where k.id = $id
+				on r.id_ruangan = k.id_ruangan
+            where k.id_kegiatan = $id
         ");
         
         $data = collect($data)->first();

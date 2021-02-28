@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ormawa;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -19,38 +20,24 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
+        $id_pengguna = Auth::guard('admin')->user()->id_pengguna;
+
         $this_month = date('Y-m');
         $this_month_text = month_text(date('m')) . ' ' . date('Y');
 
         $ormawa_id = $request->input('ormawa_id');
         
-        $qOrmawa = '';
-        if (!empty($ormawa_id)) {
-            $qOrmawa = " AND o.id = $ormawa_id";
-        }
-        
         $kegiatan = DB::select("SELECT 
                 k.*,
                 o.nama AS nama_ormawa,
                 r.nama AS nama_ruangan
             FROM kegiatan k
             left join ormawa o
-                on o.id = k.ormawa_id
+                on o.id_pengguna = k.id_pengguna
             left join ruangan r
-                on r.id = k.ruangan_id
-            where date_format(k.tanggal, '%Y-%m') = '$this_month' $qOrmawa
-        ");
-        
-        $kegiatan = DB::select("SELECT 
-                k.*,
-                o.nama AS nama_ormawa,
-                r.nama AS nama_ruangan
-            FROM kegiatan k
-            left join ormawa o
-                on o.id = k.ormawa_id
-            left join ruangan r
-                on r.id = k.ruangan_id
+                on r.id_ruangan = k.id_ruangan
             where date_format(k.tanggal, '%Y-%m') = '$this_month'
+                and o.id_pengguna = $id_pengguna
         ");
         $ormawa = DB::table('ormawa')->get();
 
@@ -70,10 +57,10 @@ class DashboardController extends Controller
 				r.nama AS nama_ruangan
 			FROM kegiatan k
 			left join ormawa o
-				on o.id = k.ormawa_id
+				on o.id_pengguna = k.id_pengguna
 			left join ruangan r
-				on r.id = k.ruangan_id
-            where k.id = $id
+				on r.id_ruangan = k.id_ruangan
+            where k.id_kegiatan = $id
         ");
         
         $data = collect($data)->first();
@@ -103,7 +90,7 @@ class DashboardController extends Controller
 			left join ormawa o
 				on o.id = p.ormawa_id
 			left join ruangan r
-				on r.id = p.ruangan_id
+				on r.id_ruangan = p.id_ruangan
         where date_format(p.tanggal_mulai, '%Y-%m-%d') between '$start' and '$end'");
 
         $data = collect($data)->map(function ($val)

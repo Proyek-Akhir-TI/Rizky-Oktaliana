@@ -65,7 +65,6 @@
                   <th>Jumlah Kehadiran Peserta</th>
                   <th>Total Biaya Kegiatan</th>
                   <th>Status Kegiatan</th>
-                  <th>Aksi</th>
               </thead>
               <tbody>
                   @if (!empty($data))
@@ -86,10 +85,10 @@
                             <td>{{ $value->jml_kehadiran }}</td>
                             <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
                             <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
-                            <td>
-                                <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
-                                {{-- <a href="{{ url('wadir/' . $prefix . '/hapus/' . $value->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a> --}}
-                            </td>
+                            {{-- <td>
+                                <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id_kegiatan) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
+                                {{-- <a href="{{ url('wadir/' . $prefix . '/hapus/' . $value->id_kegiatan) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a> 
+                            </td> --}}
                         </tr>
                     @endforeach
                     <tr>

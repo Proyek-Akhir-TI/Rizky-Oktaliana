@@ -18,7 +18,7 @@
         <form action="{{ url($form_action_url) }}" method="POST">
             {{ csrf_field() }}
 
-            <input type="hidden" name="pengguna_id" value="{{ $data->pengguna_id }}">
+            <input type="hidden" name="id_pengguna" value="{{ $data->id_pengguna }}">
             
             <div class="form-group">
                 <label for="nama">Nama Ormawa</label>
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value="{{ $data->username }}"> 
+                <input type="text" class="form-control" id="username" name="username" value="{{ $pengguna->username }}"> 
                 <small>* Password secara default menggunakan username ini</small>
             </div>
             <div class="form-group">

@@ -22,7 +22,7 @@
         <form action="{{ url($form_action_url) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            <input type="hidden" name="ormawa_id" value="{{ $ormawa_id }}">
+            <input type="hidden" name="id_pengguna" value="{{ $ormawa_id }}">
             
             <div class="form-group">
                 <label for="nama">Nama Kegiatan</label>
@@ -33,12 +33,12 @@
                 <input type="file" class="form-control" id="poster" name="poster"> 
             </div>
             <div class="form-group">
-                <label for="ruangan_id">Ruangan</label>
-                <select name="ruangan_id" id="ruangan_id" class="form-control">
+                <label for="id_ruangan">Ruangan</label>
+                <select name="id_ruangan" id="id_ruangan" class="form-control">
                   <option value="">- Pilih Ruangan -</option>
 
                   @foreach ($ruangan as $value)
-                      <option value="{{ $value->id }}">{{ $value->nama }}</option>
+                      <option value="{{ $value->id_ruangan }}">{{ $value->nama }}</option>
                   @endforeach
                 </select>
             </div>

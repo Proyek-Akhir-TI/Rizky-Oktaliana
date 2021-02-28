@@ -61,7 +61,7 @@
                             <option value="">- Semua Ormawa -</option>
                             
                             @foreach ($ormawa as $value)
-                                <option {{ ($ormawa_id == $value->id) ? 'selected' : "" }} value="{{ $value->id }}">{{ $value->nama }}</option>
+                                <option {{ ($ormawa_id == $value->id_ormawa) ? 'selected' : "" }} value="{{ $value->id_ormawa }}">{{ $value->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -85,7 +85,7 @@
                             <p class="pt-3">{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</p>
 
                             <div class="pt-0">
-                                <a href="{{ url('wadir/kegiatan/detail/' . $value->id) }}" class="card-link">Lihat Detail</a>
+                                <a href="{{ url('wadir/kegiatan/detail/' . $value->id_kegiatan) }}" class="card-link">Lihat Detail</a>
                             </div>
                         </div>
                     </div>

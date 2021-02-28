@@ -7,8 +7,8 @@
         <h1 class="h3 mb-4 text-gray-800">Detail Data {{ $title }}</h1>
     </div>
     <div class="col-lg-6 text-right">
-      <a href="{{ url('admin/' . $prefix . '/reset_password/' . $data->id) }}" class="btn btn-outline-warning mr-1" onclick="return confirm('Apakah anda yakin?');">Reset Password</a>
-      <a href="{{ url('admin/' . $prefix . '/edit/' . $data->id) }}" class="btn btn-warning">Edit Data</a>
+      <a href="{{ url('admin/' . $prefix . '/reset_password/' . $data->id_ormawa) }}" class="btn btn-outline-warning mr-1" onclick="return confirm('Apakah anda yakin?');">Reset Password</a>
+      <a href="{{ url('admin/' . $prefix . '/edit/' . $data->id_ormawa) }}" class="btn btn-warning">Edit Data</a>
     </div>
 </div>
 
@@ -29,7 +29,7 @@
                   </tr>
                   <tr>
                     <td>Username</td>
-                    <td><b>{{ $data->username }}</b></td>
+                    <td><b>{{ $pengguna->username }}</b></td>
                   </tr>
                 </table>
               </tr>
@@ -65,8 +65,8 @@
 
         <div class="row mt-3">
           <div class="col-md-12">
-              <form class="form-inline" method="GET" action="{{ url('admin/ormawa/detail/' . $data->id) }}">
-                  <input type="hidden" name="ormawa_id" value="{{ $data->id }}">
+              <form class="form-inline" method="GET" action="{{ url('admin/ormawa/detail/' . $data->id_ormawa) }}">
+                  <input type="hidden" name="ormawa_id" value="{{ $data->id_ormawa }}">
 
                   <div class="input-group mb-2 mr-sm-2">
                       <select name="tahun" id="tahun" class="form-control">
@@ -128,7 +128,7 @@
                       <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
                       <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
                       <td>
-                          <a href="{{ url('admin/kegiatan/detail/' . $value->id) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>
+                          <a href="{{ url('admin/kegiatan/detail/' . $value->id_kegiatan) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>
                       </td>
                   </tr>
               @endforeach

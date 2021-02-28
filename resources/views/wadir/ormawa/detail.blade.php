@@ -23,10 +23,6 @@
                     <td>Nama</td>
                     <td><b>{{ $data->nama }}</b></td>
                   </tr>
-                  <tr>
-                    <td>Username</td>
-                    <td><b>{{ $data->username }}</b></td>
-                  </tr>
                 </table>
               </tr>
             </table>
@@ -57,8 +53,8 @@
 
         <div class="row mt-3">
           <div class="col-md-12">
-              <form class="form-inline" method="GET" action="{{ url('wadir/ormawa/detail/' . $data->id) }}">
-                  <input type="hidden" name="ormawa_id" value="{{ $data->id }}">
+              <form class="form-inline" method="GET" action="{{ url('wadir/ormawa/detail/' . $data->id_ormawa) }}">
+                  <input type="hidden" name="ormawa_id" value="{{ $data->id_ormawa }}">
 
                   <div class="input-group mb-2 mr-sm-2">
                       <select name="tahun_ketua" id="tahun_ketua" class="form-control">
@@ -107,7 +103,7 @@
             <h5 style="letter-spacing: 1px">Kegiatan</h5>
           </div>
           <div class="col-md-6">
-            <form class="form-inline ml-auto"style="display: flex; justify-content: flex-end" method="GET" action="{{ url('wadir/ormawa/detail/' . $data->id) }}">
+            <form class="form-inline ml-auto"style="display: flex; justify-content: flex-end" method="GET" action="{{ url('wadir/ormawa/detail/' . $data->id_ormawa) }}">
               <div class="form-group mx-sm-3 mb-2">
                 <select name="tahun" id="tahun" class="form-control">
                   <option {{ ($tahun == "") ? 'selected' : '' }} value="">Semua Tahun</option>
@@ -141,7 +137,7 @@
                       <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
                       <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
                       <td>
-                          <a href="{{ url('wadir/kegiatan/detail/' . $value->id) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>
+                          <a href="{{ url('wadir/kegiatan/detail/' . $value->id_kegiatan) }}" class="btn btn-outline-primary btn-sm mr-1">Detail</a>
                       </td>
                   </tr>
               @endforeach

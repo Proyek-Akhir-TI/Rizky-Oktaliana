@@ -44,7 +44,7 @@ table,th,td { border:1px solid black; border-collapse:collapse; } th,td { paddin
 </head>
 <body>
 
-<h1>Laporan Ruangan Yang Digunakan Dalam Pelaksanann Kegiatan di </h1>
+<h1>Laporan Ruangan Yang Digunakan Dalam Pelaksanaan Kegiatan di </h1>
 <h2 style="text-align: center; padding-bottom: 20px">Politeknik Negeri Banyuwangi</h2>
 
 @if (!empty($tahun))

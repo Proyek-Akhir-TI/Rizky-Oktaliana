@@ -19,10 +19,12 @@ class LaporanRuanganController extends Controller
 
     public function index()
     {
-		$data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
-                INNER JOIN ruangan r
-                    ON r.id = k.ruangan_id
-                GROUP BY k.ruangan_id
+		$data = DB::select("SELECT 
+                r.nama AS nama_ruangan, COUNT(r.id_ruangan) AS jml_kegiatan 
+            FROM kegiatan k
+            INNER JOIN ruangan r
+                ON r.id_ruangan = k.id_ruangan
+            GROUP BY k.id_ruangan
 		");
 
         $ormawa = DB::table('ormawa')->get();
@@ -55,7 +57,7 @@ class LaporanRuanganController extends Controller
 		// 	left join ormawa o
 		// 		on o.id = k.ormawa_id
 		// 	left join ruangan r
-		// 		on r.id = k.ruangan_id
+		// 		on r.id = k.id_ruangan
         // ");
         
         if (!empty($tahun)) {
@@ -65,11 +67,12 @@ class LaporanRuanganController extends Controller
                 $qWaktu = " WHERE DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
 
-            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
+            $data = DB::select("SELECT 
+                r.nama AS nama_ruangan, COUNT(r.id_ruangan) AS jml_kegiatan FROM kegiatan k
             INNER JOIN ruangan r
-                ON r.id = k.ruangan_id
+                ON r.id_ruangan = k.id_ruangan
                  $qWaktu
-            GROUP BY k.ruangan_id
+            GROUP BY k.id_ruangan
             ");
         }
 
@@ -87,44 +90,6 @@ class LaporanRuanganController extends Controller
         ));
     }
 
-    public function detail($id)
-    {
-		$data = DB::select("SELECT 
-				k.*,
-				o.nama AS nama_ormawa,
-				r.nama AS nama_ruangan
-			FROM kegiatan k
-			left join ormawa o
-				on o.id = k.ormawa_id
-			left join ruangan r
-				on r.id = k.ruangan_id
-            where k.id = $id
-        ");
-        
-        $data = collect($data)->first();
-
-        $title           = $this->title;
-        $prefix          = $this->prefix;
-        $form_action_url = $this->root . '/detail/' . $id;
-
-        return view($this->root . '/detail', compact(
-            'data',
-            'title',
-            'form_action_url',
-            'prefix'
-        ));
-    }
-
-    public function hapus($id)
-    {
-        DB::table('kegiatan')
-            ->where('id', $id)
-            ->delete();
-
-        $this->message("success", "Data berhasil dihapus!");
-        return redirect($this->root);
-    }
-
     public function cetak(Request $request)
     { 
         $tahun     = empty($request['tahun']) ? ""    : $request['tahun'];
@@ -137,7 +102,7 @@ class LaporanRuanganController extends Controller
 		// 	left join ormawa o
 		// 		on o.id = k.ormawa_id
 		// 	left join ruangan r
-		// 		on r.id = k.ruangan_id
+		// 		on r.id = k.id_ruangan
         // ");
         
         if (!empty($tahun)) {
@@ -147,18 +112,18 @@ class LaporanRuanganController extends Controller
                 $qWaktu = " WHERE DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
 
-            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
+            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id_ruangan) AS jml_kegiatan FROM kegiatan k
             INNER JOIN ruangan r
-                ON r.id = k.ruangan_id
+                ON r.id_ruangan = k.id_ruangan
                  $qWaktu
-            GROUP BY k.ruangan_id
+            GROUP BY k.id_ruangan
             ");
         } else {
 
-            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id) AS jml_kegiatan FROM kegiatan k
+            $data = DB::select("SELECT r.nama AS nama_ruangan, COUNT(r.id_ruangan) AS jml_kegiatan FROM kegiatan k
                     INNER JOIN ruangan r
-                        ON r.id = k.ruangan_id
-                    GROUP BY k.ruangan_id
+                        ON r.id_ruangan = k.id_ruangan
+                    GROUP BY k.id_ruangan
             ");
 
         }
