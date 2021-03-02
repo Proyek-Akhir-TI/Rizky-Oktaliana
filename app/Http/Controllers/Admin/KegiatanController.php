@@ -70,8 +70,11 @@ class KegiatanController extends Controller
         if (!empty($id_ormawa) || !empty($bulan) || !empty($tahun)) {
             $qWaktu = '';
             
-            if (!empty($bulan) || !empty($tahun)) {
+            if (!empty($bulan) && !empty($tahun)) {
                 $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+            }
+            if (!empty($tahun)) {
+                $qWaktu = " AND DATE_FORMAT(k.tanggal, '%Y') = '$tahun'";
             }
 
             $qOrmawa = "";
