@@ -120,7 +120,7 @@ class LaporanKegiatanControlller extends Controller
 				on o.id_pengguna = k.id_pengguna
 			left join ruangan r
 				on r.id_ruangan = k.id_ruangan
-            where k.id = $id
+            where k.id_kegiatan = $id
         ");
         
         $data = collect($data)->first();
