@@ -40,11 +40,11 @@
                 </select>
             </div>
             <div class="input-group mb-2 mr-sm-2">
-                <select name="ormawa_id" id="ormawa_id" class="form-control">
+                <select name="id_ormawa" id="id_ormawa" class="form-control">
                     <option value="">- Semua Ormawa -</option>
                     
                     @foreach ($ormawa as $value)
-                        <option {{ ($ormawa_id == $value->id) ? 'selected' : "" }} value="{{ $value->id }}">{{ $value->nama }}</option>
+                        <option {{ ($id_ormawa == $value->id_ormawa) ? 'selected' : "" }} value="{{ $value->id_ormawa }}">{{ $value->nama }}</option>
                     @endforeach
                 </select>
             </div>
@@ -77,8 +77,7 @@
                             <td>{{ $value->nama_ruangan }}</td>
                             <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
                             <td>
-                                <a href="{{ url('admin/' . $prefix . '/detail/' . $value->id) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
-                                {{-- <a href="{{ url('admin/' . $prefix . '/hapus/' . $value->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a> --}}
+                                <a href="{{ url('admin/' . $prefix . '/detail/' . $value->id_kegiatan   ) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
                             </td>
                         </tr>
                     @endforeach

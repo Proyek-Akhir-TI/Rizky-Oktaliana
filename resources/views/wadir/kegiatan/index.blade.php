@@ -84,7 +84,7 @@
 
                     @foreach ($data as $value)
                         @php
-                            $total_biaya += $value->total_biaya_kegiatan;
+                            $total_biaya += (empty($value->total_biaya_kegiatan)) ? 0 : $value->total_biaya_kegiatan;
                         @endphp
                         <tr>
                             <td>{{ $value->nama }}</td>

@@ -67,7 +67,7 @@
                             <p class="pt-3">{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</p>
 
                             <div class="pt-0">
-                                <a href="{{ url('admin/kegiatan/detail/' . $value->id) }}" class="card-link">Lihat Detail</a>
+                                <a href="{{ url('admin/kegiatan/detail/' . $value->id_kegiatan) }}" class="card-link">Lihat Detail</a>
                             </div>
                         </div>
                     </div>

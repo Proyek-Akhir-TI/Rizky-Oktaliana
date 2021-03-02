@@ -25,9 +25,9 @@ class KegiatanController extends Controller
 				r.nama AS nama_ruangan
 			FROM kegiatan k
 			left join ormawa o
-				on o.id = k.ormawa_id
+				on o.id_pengguna = k.id_pengguna
 			left join ruangan r
-				on r.id = k.ruangan_id
+				on r.id_ruangan = k.id_ruangan
 		");
 
         $ormawa = DB::table('ormawa')->get();
@@ -37,12 +37,12 @@ class KegiatanController extends Controller
 
         $bulan = '';
         $tahun = '';
-        $ormawa_id = '';
+        $id_ormawa = '';
 
         return view($this->root . '/index', compact(
             'data',
             'ormawa',
-            'ormawa_id',
+            'id_ormawa',
             'bulan',
             'tahun',
             'title',
@@ -52,7 +52,7 @@ class KegiatanController extends Controller
 
     public function search(Request $request)
     {
-        $ormawa_id = empty($request['ormawa_id']) ? "": $request['ormawa_id'];
+        $id_ormawa = empty($request['id_ormawa']) ? "": $request['id_ormawa'];
         $bulan     = empty($request['bulan']) ? ""    : $request['bulan'];
         $tahun     = empty($request['tahun']) ? ""    : $request['tahun'];
         
@@ -62,16 +62,23 @@ class KegiatanController extends Controller
 		// 		r.nama AS nama_ruangan
 		// 	FROM kegiatan k
 		// 	left join ormawa o
-		// 		on o.id = k.ormawa_id
+		// 		on o.id = k.id_ormawa
 		// 	left join ruangan r
 		// 		on r.id = k.ruangan_id
         // ");
         
-        if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
+        if (!empty($id_ormawa) || !empty($bulan) || !empty($tahun)) {
             $qWaktu = '';
             
             if (!empty($bulan) || !empty($tahun)) {
-                $qWaktu = "where DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+                $qWaktu = " DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+            }
+
+            $qOrmawa = "";
+            if (!empty($id_ormawa)) {
+                $qOrmawa  = " o.id_ormawa = $id_ormawa";
+            } else {
+                $qOrmawa  = " o.id_ormawa is not null";
             }
 
             $data = DB::select("SELECT 
@@ -80,10 +87,10 @@ class KegiatanController extends Controller
                     r.nama AS nama_ruangan
                 FROM kegiatan k
                 left join ormawa o
-                    on o.id = k.ormawa_id
+                    on o.id_pengguna = k.id_pengguna
                 left join ruangan r
-                    on r.id = k.ruangan_id
-                 $qWaktu
+                    on r.id_ruangan = k.id_ruangan
+                    where $qWaktu $qOrmawa
             ");
         }
 
@@ -95,11 +102,10 @@ class KegiatanController extends Controller
         return view($this->root . '/index', compact(
             'data',
             'ormawa',
-            'ormawa_id',
+            'id_ormawa',
             'bulan',
             'tahun',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }
@@ -111,11 +117,11 @@ class KegiatanController extends Controller
 				o.nama AS nama_ormawa,
 				r.nama AS nama_ruangan
 			FROM kegiatan k
-			left join ormawa o
-				on o.id = k.ormawa_id
-			left join ruangan r
-				on r.id = k.ruangan_id
-            where k.id = $id
+            left join ormawa o
+                on o.id_pengguna = k.id_pengguna
+            left join ruangan r
+                on r.id_ruangan = k.id_ruangan
+            where k.id_kegiatan = $id
         ");
         
         $data = collect($data)->first();

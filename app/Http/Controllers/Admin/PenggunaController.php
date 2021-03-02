@@ -19,7 +19,7 @@ class PenggunaController extends Controller
 
     public function index()
     {
-        $data = DB::table('pengguna')->where('hak_akses', 'admin')->orWhere('hak_akses', 'wadir')->get();
+        $data = DB::table('pengguna')->where('hak_akses', 'admin')->orWhere('hak_akses', 'wadir')->orderBy('id_pengguna', 'desc')->get();
 
         $title  = $this->title;
         $prefix = $this->prefix;
@@ -27,7 +27,6 @@ class PenggunaController extends Controller
         return view($this->root . '/index', compact(
             'data',
             'title',
-            'form_action_url',
             'prefix'
         ));
     }
@@ -39,7 +38,6 @@ class PenggunaController extends Controller
         $form_action_url = $this->root . '/tambah';
 
         return view($this->root . '/tambah', compact(
-            'data',
             'title',
             'form_action_url',
             'prefix'
@@ -56,6 +54,8 @@ class PenggunaController extends Controller
 
         $data = $request->input();
 
+        $data['id_pengguna'] = DB::table('id_pengguna')->insertGetId([]);
+
         $data['password'] = bcrypt($data['password']);
 
         unset($data['_token']);
@@ -69,7 +69,7 @@ class PenggunaController extends Controller
 
     public function edit($id)
     {
-        $data = DB::table('pengguna')->where('id', $id)->first();
+        $data = DB::table('pengguna')->where('id_pengguna', $id)->first();
 
         $title           = $this->title;
         $prefix          = $this->prefix;
@@ -105,7 +105,7 @@ class PenggunaController extends Controller
         unset($data['_token']);
 
         DB::table('pengguna')
-            ->where('id', $id)
+            ->where('id_pengguna', $id)
             ->update($data);
 
         $this->message("success", "Perubahan berhasil disimpan!");
@@ -115,7 +115,7 @@ class PenggunaController extends Controller
     public function hapus($id)
     {
         DB::table('pengguna')
-            ->where('id', $id)
+            ->where('id_pengguna', $id)
             ->delete();
 
         $this->message("success", "Data berhasil dihapus!");
@@ -127,7 +127,7 @@ class PenggunaController extends Controller
         $data = DB::table('pengguna')->where('id', $id)->first();
 
         DB::table('pengguna')
-            ->where('id', $id)
+            ->where('id_pengguna', $id)
             ->update([
                 'password' => bcrypt($data->username)
             ]);
@@ -138,7 +138,7 @@ class PenggunaController extends Controller
 
     public function ubah_password($id)
     {
-        $data = DB::table('pengguna')->where('id', $id)->first();
+        $data = DB::table('pengguna')->where('id_pengguna', $id)->first();
 
         $title           = $this->title;
         $prefix          = $this->prefix;
@@ -173,7 +173,7 @@ class PenggunaController extends Controller
         unset($data['_token']);
 
         DB::table('pengguna')
-            ->where('id', $id)
+            ->where('id_pengguna', $id)
             ->update($data);
 
         $this->message("success", "Perubahan berhasil disimpan!");

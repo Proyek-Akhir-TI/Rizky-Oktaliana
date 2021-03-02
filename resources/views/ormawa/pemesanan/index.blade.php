@@ -6,9 +6,6 @@
     <div class="col-lg-6">
         <h1 class="h3 mb-4 text-gray-800">Data {{ $title }}</h1>
     </div>
-    <div class="col-lg-6 text-right">
-        <a href="{{ url('admin/' . $prefix . '/tambah') }}" class="btn btn-primary"><i class="fas fa-plus pr-1"></i> Tambah Data</a>
-    </div>
 </div>
 
 <div class="row">

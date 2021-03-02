@@ -19,9 +19,9 @@ class DashboardController extends Controller
                 r.nama AS nama_ruangan
             FROM kegiatan k
             left join ormawa o
-                on o.id_ormawa = k.ormawa_id
+                on o.id_pengguna = k.id_pengguna
             left join ruangan r
-                on r.id = k.ruangan_id
+                on r.id_ruangan = k.id_ruangan
             where date_format(k.tanggal, '%Y-%m') = '$this_month'
         ");
 
@@ -42,9 +42,9 @@ class DashboardController extends Controller
                 r.nama AS nama_ruangan
             FROM kegiatan k
             left join ormawa o
-                on o.id = k.ormawa_id
+                on o.id_pengguna = k.id_pengguna
             left join ruangan r
-                on r.id = k.ruangan_id
+                on r.id_ruangan = k.id_ruangan
             where date_format(k.tanggal, '%Y-%m-%d') between '$start' and '$end'
         ");
 

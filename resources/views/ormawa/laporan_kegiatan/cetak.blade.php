@@ -57,8 +57,8 @@ code {
             <td align="center">
                 <h1>Laporan Kegiatan Kemahasiswaan</h1>
                 <h3>Politeknik Negeri Banyuwangi </h3>
-                @if (!empty($ormawa_id))
-                <h3>{{ $ormawa->nama }}</h3>
+                @if (!empty($ormawa))
+                    <h3>{{ $ormawa->nama }}</h3>
                 @endif
                 @if (!empty($bulan))
                 <p><b>{{ $bulan }}-{{ $tahun }}</b></p>

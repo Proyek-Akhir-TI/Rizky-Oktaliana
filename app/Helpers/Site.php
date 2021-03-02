@@ -53,6 +53,9 @@ function status_proker($status)
 if (!function_exists('rupiah()')) {
     function rupiah($angka)
     {
+        if (empty($angka)) {
+            return "Rp. 0";
+        }
         $jumlah_desimal = "0";
         $pemisah_desimal = ",";
         $pemisah_ribuan = ",";

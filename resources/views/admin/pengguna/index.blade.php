@@ -32,8 +32,8 @@
                             <td>{{ $value->username }}</td>
                             <td>{{ strtoupper($value->hak_akses) }}</td>
                             <td>
-                                <a href="{{ url('admin/' . $prefix . '/edit/' . $value->id) }}" class="btn btn-outline-warning btn-sm mr-1">Edit</a>
-                                <a href="{{ url('admin/' . $prefix . '/hapus/' . $value->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a>
+                                <a href="{{ url('admin/' . $prefix . '/edit/' . $value->id_pengguna) }}" class="btn btn-outline-warning btn-sm mr-1">Edit</a>
+                                <a href="{{ url('admin/' . $prefix . '/hapus/' . $value->id_pengguna) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a>
                             </td>
                         </tr>
                     @endforeach

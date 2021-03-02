@@ -82,8 +82,12 @@
                   <a class="dropdown-item" href="{{ url('ormawa/pengguna/update_password/') }}">
                     Ubah Password
                   </a>
+                @elseif($level == 'wadir')
+                  <a class="dropdown-item" href="{{ url('wadir/pengguna/ubah_password/') }}/{{ Auth::guard('admin')->user()->id_pengguna }}">
+                    Edit Profil
+                  </a>
                 @else
-                  <a class="dropdown-item" href="{{ url('admin/pengguna/ubah_password/') }}/{{ Auth::guard('admin')->user()->id }}">
+                  <a class="dropdown-item" href="{{ url('admin/pengguna/ubah_password/') }}/{{ Auth::guard('admin')->user()->id_pengguna }}">
                     Edit Profil
                   </a>
                 @endif

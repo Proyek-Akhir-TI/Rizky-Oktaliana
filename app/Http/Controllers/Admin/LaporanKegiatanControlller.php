@@ -24,10 +24,10 @@ class LaporanKegiatanControlller extends Controller
 				o.nama AS nama_ormawa,
 				r.nama AS nama_ruangan
 			FROM kegiatan k
-			left join ormawa o
-				on o.id = k.ormawa_id
-			left join ruangan r
-				on r.id = k.ruangan_id
+            left join ormawa o
+                on o.id_pengguna = k.id_pengguna
+            left join ruangan r
+                on r.id_ruangan = k.id_ruangan
 		");
 
         $ormawa = DB::table('ormawa')->get();
@@ -37,12 +37,12 @@ class LaporanKegiatanControlller extends Controller
 
         $bulan = '';
         $tahun = '';
-        $ormawa_id = '';
+        $id_ormawa = '';
 
         return view($this->root . '/index', compact(
             'data',
             'ormawa',
-            'ormawa_id',
+            'id_ormawa',
             'bulan',
             'tahun',
             'title',
@@ -52,7 +52,7 @@ class LaporanKegiatanControlller extends Controller
 
     public function search(Request $request)
     {
-        $ormawa_id = empty($request['ormawa_id']) ? "": $request['ormawa_id'];
+        $id_ormawa = empty($request['id_ormawa']) ? "": $request['id_ormawa'];
         $bulan     = empty($request['bulan']) ? ""    : $request['bulan'];
         $tahun     = empty($request['tahun']) ? ""    : $request['tahun'];
         
@@ -62,13 +62,13 @@ class LaporanKegiatanControlller extends Controller
 		// 		r.nama AS nama_ruangan
 		// 	FROM kegiatan k
 		// 	left join ormawa o
-		// 		on o.id = k.ormawa_id
+		// 		on o.id = k.id_ormawa
 		// 	left join ruangan r
 		// 		on r.id = k.ruangan_id
         // ");
         $data = [];
         
-        if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
+        if (!empty($id_ormawa) || !empty($bulan) || !empty($tahun)) {
             $qWaktu = '';
             
             if (!empty($bulan) && !empty($tahun)) {
@@ -78,10 +78,10 @@ class LaporanKegiatanControlller extends Controller
             }
 
             $qOrmawa = "";
-            if (!empty($ormawa_id)) {
-                $qOrmawa  = " o.id = $ormawa_id";
+            if (!empty($id_ormawa)) {
+                $qOrmawa  = " o.id_ormawa = $id_ormawa";
             } else {
-                $qOrmawa  = " o.id is not null";
+                $qOrmawa  = " o.id_ormawa is not null";
             }
 
             $data = DB::select("SELECT 
@@ -90,9 +90,9 @@ class LaporanKegiatanControlller extends Controller
                     r.nama AS nama_ruangan
                 FROM kegiatan k
                 left join ormawa o
-                    on o.id = k.ormawa_id
+                    on o.id_pengguna = k.id_pengguna
                 left join ruangan r
-                    on r.id = k.ruangan_id
+                    on r.id_ruangan = k.id_ruangan
                 where $qOrmawa $qWaktu
             ");
         }
@@ -105,7 +105,7 @@ class LaporanKegiatanControlller extends Controller
         return view($this->root . '/index', compact(
             'data',
             'ormawa',
-            'ormawa_id',
+            'id_ormawa',
             'bulan',
             'tahun',
             'title',
@@ -120,11 +120,11 @@ class LaporanKegiatanControlller extends Controller
 				o.nama AS nama_ormawa,
 				r.nama AS nama_ruangan
 			FROM kegiatan k
-			left join ormawa o
-				on o.id = k.ormawa_id
-			left join ruangan r
-				on r.id = k.ruangan_id
-            where k.id = $id
+            left join ormawa o
+                on o.id_pengguna = k.id_pengguna
+            left join ruangan r
+                on r.id_ruangan = k.id_ruangan
+            where k.id_kegiatan = $id
         ");
         
         $data = collect($data)->first();
@@ -144,7 +144,7 @@ class LaporanKegiatanControlller extends Controller
 
     public function cetak(Request $request)
     {
-		$ormawa_id = empty($request['ormawa_id']) ? "": $request['ormawa_id'];
+		$id_ormawa = empty($request['id_ormawa']) ? "": $request['id_ormawa'];
         $bulan     = empty($request['bulan']) ? ""    : $request['bulan'];
         $tahun     = empty($request['tahun']) ? ""    : $request['tahun'];
         
@@ -154,13 +154,13 @@ class LaporanKegiatanControlller extends Controller
 		// 		r.nama AS nama_ruangan
 		// 	FROM kegiatan k
 		// 	left join ormawa o
-		// 		on o.id = k.ormawa_id
+		// 		on o.id = k.id_ormawa
 		// 	left join ruangan r
 		// 		on r.id = k.ruangan_id
         // ");
         
         $qWaktu = '';
-        if (!empty($ormawa_id) || !empty($bulan) || !empty($tahun)) {
+        if (!empty($id_ormawa) || !empty($bulan) || !empty($tahun)) {
             
             if (!empty($bulan) && !empty($tahun)) {
                 $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
@@ -170,10 +170,10 @@ class LaporanKegiatanControlller extends Controller
         }
 
         $qOrmawa = "";
-        if (!empty($ormawa_id)) {
-            $qOrmawa  = " o.id = $ormawa_id";
+        if (!empty($id_ormawa)) {
+            $qOrmawa  = " o.id_ormawa = $id_ormawa";
         } else {
-            $qOrmawa  = " o.id is not null";
+            $qOrmawa  = " o.id_ormawa is not null";
         }
 
         $data = DB::select("SELECT 
@@ -182,18 +182,18 @@ class LaporanKegiatanControlller extends Controller
                 r.nama AS nama_ruangan
             FROM kegiatan k
             left join ormawa o
-                on o.id = k.ormawa_id
+                on o.id_pengguna = k.id_pengguna
             left join ruangan r
-                on r.id = k.ruangan_id
+                on r.id_ruangan = k.id_ruangan
             where $qOrmawa $qWaktu
         ");
 
-        $ormawa = DB::table('ormawa')->where('id', $ormawa_id)->first();
+        $ormawa = DB::table('ormawa')->where('id_ormawa', $id_ormawa)->first();
 
         return view($this->root . '/cetak', compact(
             'data',
             'ormawa',
-            'ormawa_id',
+            'id_ormawa',
             'bulan',
             'tahun'
         ));

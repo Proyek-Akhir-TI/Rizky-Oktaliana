@@ -56,7 +56,7 @@ code {
         <td align="center">
             <h1>Laporan Kegiatan Kemahasiswaan</h1>
             <h3>Politeknik Negeri Banyuwangi </h3>
-            @if (!empty($ormawa_id))
+            @if (!empty($id_ormawa))
             <h3>{{ $ormawa->nama }}</h3>
             @endif
             @if (!empty($bulan))

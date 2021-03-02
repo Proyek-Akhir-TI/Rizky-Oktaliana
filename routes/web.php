@@ -123,6 +123,8 @@ Route::group([
     Route::get('laporan_ruangan/detail/{id}', ['uses' => 'LaporanRuanganController@detail']); 
     Route::get('laporan_ruangan/cetak', ['uses' => 'LaporanRuanganController@cetak']);
 
+    Route::get('pengguna/ubah_password/{id}', ['uses' => 'PenggunaController@ubah_password']);
+    Route::post('pengguna/ubah_password/{id}', ['uses' => 'PenggunaController@prosesUbahPassword']);
 });
 
 Route::group([
