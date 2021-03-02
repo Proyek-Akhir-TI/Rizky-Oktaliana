@@ -204,7 +204,7 @@ class KegiatanController extends Controller
             'ormawa',
             'ormawa_id',
             'bulan',
-            'tahun',   
+            'tahun'  
         ));
     }
 }

@@ -25,7 +25,6 @@ class OrmawaKetuaController extends Controller
         $form_action_url = $this->root . '/tambah';
 
         return view('ormawa/pengguna/tambah_ketua', compact(
-            'data',
             'title',
             'form_action_url',
             'prefix'
@@ -37,9 +36,9 @@ class OrmawaKetuaController extends Controller
         $penggunaID = Auth::guard('admin')->user()->id_pengguna;
         $data       = $request->input();
 
-        $ormawa = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first();
+        $ormawa = DB::table('ormawa')->where('id_pengguna', $penggunaID)->first();
         $check_active_ormawa_ketua = DB::table('ormawa_ketua')
-            ->where('ormawa_id', $ormawa->id)
+            ->where('id_ormawa', $ormawa->id_ormawa)
             ->where('status', 1)
             ->count();
         
@@ -58,7 +57,7 @@ class OrmawaKetuaController extends Controller
 
         $ketua_ormawa = [
             'nama_ketua'    => $data['nama_ketua'],
-            'ormawa_id'     => $ormawa->id,
+            'id_ormawa'     => $ormawa->id_ormawa,
             'periode'       => $data['periode'],
             'status'        => $status // aktif
         ];
@@ -72,7 +71,7 @@ class OrmawaKetuaController extends Controller
     {
         $penggunaID = Auth::guard('admin')->user()->id_pengguna;
 
-        $data = DB::table('ormawa_ketua')->where('id', $id)->first();
+        $data = DB::table('ormawa_ketua')->where('id_ormawa_ketua', $id)->first();
 
         $title           = $this->title;
         $prefix          = $this->prefix;
@@ -91,10 +90,10 @@ class OrmawaKetuaController extends Controller
         $penggunaID = Auth::guard('admin')->user()->id_pengguna;
         $data       = $request->input();
 
-        $ormawa = DB::table('ormawa')->where('pengguna_id', $penggunaID)->first();
+        $ormawa = DB::table('ormawa')->where('id_pengguna', $penggunaID)->first();
 
         $check_active_ormawa_ketua = DB::table('ormawa_ketua')
-            ->where('ormawa_id', $ormawa->id)
+            ->where('id_ormawa', $ormawa->id_ormawa)
             ->where('status', 1)
             ->count();
         
@@ -117,7 +116,7 @@ class OrmawaKetuaController extends Controller
             'status'        => $status // aktif
         ];
         DB::table('ormawa_ketua')
-            ->where('id', $ketua_id)
+            ->where('id_ormawa_ketua', $ketua_id)
             ->update($ketua_ormawa);
 
         $this->message("success", "Perubahan berhasil disimpan!");
@@ -127,7 +126,7 @@ class OrmawaKetuaController extends Controller
     public function prosesHapus($ketua_id)
     {
         DB::table('ormawa_ketua')
-            ->where('id', $ketua_id)
+            ->where('id_ormawa_ketua', $ketua_id)
             ->delete();
 
         $this->message("success", "Berhasil di hapus!");

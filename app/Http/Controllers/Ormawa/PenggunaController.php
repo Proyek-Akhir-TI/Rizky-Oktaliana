@@ -26,13 +26,13 @@ class PenggunaController extends Controller
                 o.*, p.username
             FROM ormawa o
             inner join pengguna p
-                on p.id = o.pengguna_id
-            where o.pengguna_id = $penggunaID
+                on p.id_pengguna = o.id_pengguna
+            where o.id_pengguna = $penggunaID
         ");
 
         $data = collect($data)->first();
 
-        $ormawa_ketua = DB::table('ormawa_ketua')->where('ormawa_id', $data->id)->get();
+        $ormawa_ketua = DB::table('ormawa_ketua')->where('id_ormawa', $data->id_ormawa)->get();
 
         $title           = $this->title;
         $prefix          = $this->prefix;
@@ -57,7 +57,6 @@ class PenggunaController extends Controller
         ]);
 
         $ormawa_data = [
-            'username'   => $data['username'],
             'no_hp'   => $data['no_hp'],
         ];
 
@@ -67,14 +66,14 @@ class PenggunaController extends Controller
             $request->foto->move(public_path('uploads/logo'), $ormawa_data['foto']);
         }
         DB::table('ormawa')
-            ->where('pengguna_id', $penggunaID) 
+            ->where('id_pengguna', $penggunaID) 
             ->update($ormawa_data);
 
         $pengguna_data = [
             'username' => $data['username'],
         ];
         DB::table('pengguna')
-            ->where('id', $penggunaID)
+            ->where('id_pengguna', $penggunaID)
             ->update($pengguna_data);
 
         $this->message("success", "Perubahan berhasil disimpan!");
@@ -84,7 +83,7 @@ class PenggunaController extends Controller
     public function updatePassword()
     {
         $penggunaID = Auth::guard('admin')->user()->id_pengguna;
-        $data = DB::table('pengguna')->where('id', $penggunaID)->first();
+        $data = DB::table('pengguna')->where('id_pengguna', $penggunaID)->first();
 
         $title           = $this->title;
         $prefix          = $this->prefix;
@@ -121,7 +120,7 @@ class PenggunaController extends Controller
         unset($data['_token']);
 
         DB::table('pengguna')
-            ->where('id', $penggunaID)
+            ->where('id_pengguna', $penggunaID)
             ->update($data);
 
         $this->message("success", "Password berhasil direset!");

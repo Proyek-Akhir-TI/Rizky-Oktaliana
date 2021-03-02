@@ -73,8 +73,8 @@
                                 <td>{{ $value->periode }}</td>
                                 <td>{{ ($value->status == 1) ? 'Aktif' : 'Tidak Aktif' }}</td>
                                 <td>
-                                    <a href="{{ url('ormawa/ketua/edit/' . $value->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="{{ url('ormawa/ketua/hapus/' . $value->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="{{ url('ormawa/ketua/edit/' . $value->id_ormawa_ketua) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{{ url('ormawa/ketua/hapus/' . $value->id_ormawa_ketua) }}" class="btn btn-sm btn-danger">Hapus</a>
                                 </td>
                             </tr>
                         @endforeach
