@@ -88,7 +88,7 @@
                   </a>
                 @else
                   <a class="dropdown-item" href="{{ url('admin/pengguna/ubah_password/') }}/{{ Auth::guard('admin')->user()->id_pengguna }}">
-                    Edit Profil
+                    Ubah Password
                   </a>
                 @endif
 

@@ -71,7 +71,7 @@ class KegiatanController extends Controller
             $qWaktu = '';
             
             if (!empty($bulan) || !empty($tahun)) {
-                $qWaktu = " DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
+                $qWaktu = " AND DATE_FORMAT(k.tanggal, '%m-%Y') = '$bulan-$tahun'";
             }
 
             $qOrmawa = "";
@@ -90,7 +90,7 @@ class KegiatanController extends Controller
                     on o.id_pengguna = k.id_pengguna
                 left join ruangan r
                     on r.id_ruangan = k.id_ruangan
-                    where $qWaktu $qOrmawa
+                    where $qOrmawa $qWaktu 
             ");
         }
 
