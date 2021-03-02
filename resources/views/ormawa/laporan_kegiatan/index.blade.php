@@ -73,23 +73,23 @@
                     @endphp
 
                     @foreach ($data as $value)
-                        @php
-                            $total_biaya += $value->total_biaya_kegiatan;
-                        @endphp
-                        <tr>
-                            <td>{{ $value->nama }}</td>
-                            <td>{{ $value->nama_ormawa }}</td>
-                            <td>{{ $value->nama_ruangan }}</td>
-                            <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
-                            <td>{{ $value->jml_peserta }}</td>
-                            <td>{{ $value->jml_kehadiran }}</td>
-                            <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
-                            <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
-                            {{-- <td>
-                                <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id_kegiatan) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
-                                {{-- <a href="{{ url('wadir/' . $prefix . '/hapus/' . $value->id_kegiatan) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a> 
-                            </td> --}}
-                        </tr>
+                    @php
+                        $total_biaya += (empty($value->total_biaya_kegiatan)) ? 0 : $value->total_biaya_kegiatan;
+                    @endphp
+                    <tr>
+                        <td>{{ $value->nama }}</td>
+                        <td>{{ $value->nama_ormawa }}</td>
+                        <td>{{ $value->nama_ruangan }}</td>
+                        <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
+                        <td>{{ $value->jml_peserta }}</td>
+                        <td>{{ $value->jml_kehadiran }}</td>
+                        <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
+                        <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
+                        <td>
+                            <a href="{{ url('wadir/' . $prefix . '/detail/' . $value->id_kegiatan) }}" class="btn btn-primary btn-sm mr-1">Detail</a>
+                            {{-- <a href="{{ url('wadir/' . $prefix . '/hapus/' . $value->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a> --}}
+                        </td>
+                    </tr>
                     @endforeach
                     <tr>
                         <td colspan="6" align="right"><B>Total Keselurahan Biaya</B></td>
