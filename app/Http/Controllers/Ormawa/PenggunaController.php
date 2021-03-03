@@ -108,8 +108,8 @@ class PenggunaController extends Controller
                 're_password' => 'required|same:password'
             ]);
             
-            $data['password'] = bcrypt($data['password']);
             $data['password_md5'] = md5($data['password']);
+            $data['password'] = bcrypt($data['password']);
             
             unset($data['re_password']);
         } else {
