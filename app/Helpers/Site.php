@@ -34,13 +34,16 @@ function status_proker($status)
 {
     switch ($status) {
         case '1':
-            return 'Belum Dilaksanakan';
+            return 'Belum Bayar';
             break;
         case '2':
-            return 'Sudah Dilaksanakan';
+            return 'Proses Konfirmasi';
             break;
         case '3':
-            return 'Tidak Dilaksanakan';
+            return 'Berhasil';
+            break;
+        case '4':
+            return 'Gagal';
             break;
             
         default:
@@ -120,7 +123,7 @@ function get_status($id)
             break;
         case '2':
             return [
-                'name' => 'Menunggu Konfirmasi',
+                'name' => 'Proses Konfirmasi',
                 'color' => 'info'
             ];
             break;
@@ -132,7 +135,7 @@ function get_status($id)
             break;
         case '4':
             return [
-                'name' => 'Gagal/Kadaluarsa',
+                'name' => 'Gagal',
                 'color' => 'danger'
             ];
             break;

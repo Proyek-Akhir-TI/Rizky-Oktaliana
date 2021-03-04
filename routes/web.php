@@ -111,7 +111,7 @@ Route::group([
     Route::get('kegiatan', ['uses' => 'KegiatanController@index']);
     Route::get('kegiatan/detail/{id}', ['uses' => 'KegiatanController@detail']); 
     Route::get('kegiatan/search', ['uses' => 'KegiatanController@search']);
-    Route::get('kegiatan/cetak', ['uses' => 'KegiatanController@cetak']);
+    Route::get('kegiatan/cetak/{id}', ['uses' => 'KegiatanController@cetak']);
 
     // ORMAWA
     Route::get('ormawa', ['uses' => 'OrmawaController@index']);
@@ -147,6 +147,7 @@ Route::group([
     Route::get('kegiatan/edit/{id}', ['uses' => 'KegiatanOrmawaController@edit']);
     Route::post('kegiatan/edit/{id}', ['uses' => 'KegiatanOrmawaController@prosesEdit']);
     Route::get('kegiatan/hapus/{id}', ['uses' => 'KegiatanOrmawaController@hapus']);
+    Route::get('kegiatan/cetak/{id}', ['uses' => 'KegiatanOrmawaController@cetak']);
 
     Route::get('pengguna/update', ['uses' => 'PenggunaController@update']);
     Route::post('pengguna/update', ['uses' => 'PenggunaController@prosesUpdate']);
@@ -181,23 +182,4 @@ Route::group([
     Route::get('bank/hapus/{id}', ['uses' => 'BankController@hapus']);
 
 });
-
-Route::group([
-    'name'       => 'mahasiswa.',
-    'prefix'     => 'mahasiswa',
-    'middleware' => ['auth:admin', 'check_user:mahasiswa'],
-    'namespace'  => 'Mahasiswa',
-], function () {
-    Route::get('dashboard', ['uses' => 'DashboardController@index']);
-    Route::get('dashboard/calender/get_data', ['uses' => 'DashboardController@getDataCalendar']);
-    
-    // KEGIATAN
-    Route::get('kegiatan', ['uses' => 'KegiatanController@index']);
-    Route::get('kegiatan/detail/{id}', ['uses' => 'KegiatanController@detail']); 
-    Route::get('kegiatan/search', ['uses' => 'KegiatanController@search']);
-    Route::get('kegiatan/tambah', ['uses' => 'KegiatanController@tambah']);
-    Route::post('kegiatan/tambah', ['uses' => 'KegiatanController@prosesTambah']);
-    Route::get('kegiatan/edit/{id}', ['uses' => 'KegiatanController@edit']);
-    Route::post('kegiatan/edit/{id}', ['uses' => 'KegiatanController@prosesEdit']);
-
-});
+ 

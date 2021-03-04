@@ -228,6 +228,16 @@ class KegiatanOrmawaController extends Controller
 				on r.id_ruangan = k.id_ruangan
             where k.id_kegiatan = $id
         ");
+
+        $peserta = DB::select("SELECT
+                pg.name, pt.*, p.id_kegiatan
+            from pemesanan p
+            left join pengguna pg
+                on p.id_pengguna = pg.id_pengguna
+            left join peserta pt
+                on pt.id_pengguna = pg.id_pengguna
+            where p.id_kegiatan = $id and p.id_status = 3
+        ");
         
         $data = collect($data)->first();
 
@@ -237,6 +247,46 @@ class KegiatanOrmawaController extends Controller
 
         return view($this->root . '/detail', compact(
             'data',
+            'peserta',
+            'title',
+            'form_action_url',
+            'prefix'
+        ));
+    }
+
+    public function cetak($id)
+    {
+        $peserta = DB::select("SELECT
+                pg.name, pt.*, p.id_kegiatan
+            from pemesanan p
+            left join pengguna pg
+                on p.id_pengguna = pg.id_pengguna
+            left join peserta pt
+                on pt.id_pengguna = pg.id_pengguna
+            where p.id_kegiatan = $id and p.id_status = 3
+        ");
+
+		$data = collect(DB::select("SELECT 
+                k.*,
+                o.nama AS nama_ormawa,
+                r.nama AS nama_ruangan
+            FROM kegiatan k
+            left join ormawa o
+                on o.id_pengguna = k.id_pengguna
+            left join ruangan r
+                on r.id_ruangan = k.id_ruangan
+            where k.id_kegiatan = $id
+        "))->first();
+
+        $nama_kegiatan = $data->nama;
+
+        $title           = $this->title;
+        $prefix          = $this->prefix;
+        $form_action_url = $this->root . '/detail/' . $id;
+
+        return view($this->root . '/cetak', compact(
+            'peserta',
+            'nama_kegiatan',
             'title',
             'form_action_url',
             'prefix'

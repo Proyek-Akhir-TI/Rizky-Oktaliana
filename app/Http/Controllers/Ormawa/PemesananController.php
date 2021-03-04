@@ -60,7 +60,7 @@ class PemesananController extends Controller
             left join pengguna pg
                 on pg.id_pengguna = p.id_pengguna
             left join ormawa o
-                on k.ormawa_id = o.id
+                on k.id_pengguna = o.id_pengguna
             WHERE t.id_transaksi = $trx_id
         ");
 
@@ -88,7 +88,7 @@ class PemesananController extends Controller
             left join pengguna pg
                 on pg.id_pengguna = p.id_pengguna
             left join ormawa o
-                on k.ormawa_id = o.id
+                on k.id_pengguna = o.id_pengguna
             WHERE t.id_transaksi = $trx_id
         ");
 
@@ -115,7 +115,7 @@ class PemesananController extends Controller
             left join pengguna pg
                 on pg.id_pengguna = p.id_pengguna
             left join ormawa o
-                on k.ormawa_id = o.id
+                on k.id_pengguna = o.id_pengguna
             WHERE t.id_transaksi = $trx_id
         ");
 
