@@ -66,28 +66,30 @@
 
     <div class="card shadow mb-4">
       <div class="card-body">
-        <h5 style="letter-spacing: 1px">Peserta</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <h5 style="letter-spacing: 1px">Peserta</h5>
+          </div>
+          <div class="col-md-6 text-right ">
+            <a href="{{ url('admin/laporan_kegiatan/cetak_peserta/' . $data->id_kegiatan) }}" class="btn btn-primary">Cetak</a>
+          </div>
+        </div>
 
         <table class="table table-striped table-borderless">
           <thead>
             <th>Nama</th>
             <th>NIM</th>
             <th>Email</th>
-            <th>Prodi</th>
-            <th>Angkatan</th>
+            <th>Jurusan</th>
           </thead>
           <tbody>
-            @if (!empty($proker))
-              @foreach ($proker as $value)
+            @if (!empty($peserta))
+              @foreach ($peserta as $value)
                   <tr>
-                      <td>{{ $value->nama }}</td> 
-                      <td>{{ $value->nama_ruangan }}</td>
-                      <td>{{ date('d-m-Y', strtotime($value->tanggal_mulai)) }} - {{ date('d-m-Y', strtotime($value->tanggal_akhir)) }}</td>
-                      <td>{{ status_proker($value->status) }}</td>
-                      <td>
-                          <a href="{{ url('admin/' . $prefix . '/edit/' . $value->id) }}" class="btn btn-outline-warning btn-sm mr-1">Edit</a>
-                          <a href="{{ url('admin/' . $prefix . '/hapus/' . $value->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?');">Hapus</a>
-                      </td>
+                      <td>{{ $value->name }}</td> 
+                      <td>{{ $value->NIM }}</td>
+                      <td>{{ $value->Email }}</td>
+                      <td>{{ $value->jurusan }}</td>
                   </tr>
               @endforeach
             @else

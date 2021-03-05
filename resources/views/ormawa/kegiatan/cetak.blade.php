@@ -72,7 +72,7 @@ code {
      
     <?php $no = 1; foreach($peserta as $value) {   ?>
         <tr>
-            <td>{{ $no }}</td> 
+            <td>{{ $no++ }}.</td> 
             <td>{{ $value->name }}</td> 
             <td>{{ $value->NIM }}</td>
             <td>{{ $value->Email }}</td>
