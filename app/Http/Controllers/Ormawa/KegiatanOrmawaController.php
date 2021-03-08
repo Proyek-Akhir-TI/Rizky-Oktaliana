@@ -138,7 +138,7 @@ class KegiatanOrmawaController extends Controller
         $data = $request->input();
 
         $request->validate([
-            'poster' => 'required|max:20480',
+            'poster' => 'max:20480',
         ]);
         
         unset($data['_token']);
@@ -148,6 +148,20 @@ class KegiatanOrmawaController extends Controller
         $data['total_biaya_kegiatan'] = str_replace(',', '', $data['total_biaya_kegiatan']);
         $data['biaya_keikutsertaan']  = str_replace(',', '', $data['biaya_keikutsertaan']);
         $data['status']               = 1; // belum terlaksana
+
+        $tanggal = $data['tanggal'];
+        $tanggal_mulai = $data['waktu_mulai'];
+        $tanggal_akhir = $data['waktu_akhir'];
+
+        $check = collect(DB::select("SELECT * from kegiatan 
+        where tanggal = '$tanggal'
+        and (waktu_mulai between '$tanggal_mulai' and '$tanggal_akhir' OR waktu_akhir between '$tanggal_mulai' and '$tanggal_akhir')
+        and id_ruangan = " . $data['id_ruangan']))->count();
+
+        if ($check != 0) {
+            $this->message("warning", "Ruangan sudah digunakan acara lain");
+            return redirect('ormawa/kegiatan/tambah');
+        }
 
         if (!empty($request->poster)) {
             $data['poster'] = time().'.'.$request->poster->extension();
@@ -296,7 +310,7 @@ class KegiatanOrmawaController extends Controller
     public function hapus($id)
     {
         DB::table('kegiatan')
-            ->where('id', $id)
+            ->where('id_kegiatan', $id)
             ->delete();
 
         $this->message("success", "Data berhasil dihapus!");

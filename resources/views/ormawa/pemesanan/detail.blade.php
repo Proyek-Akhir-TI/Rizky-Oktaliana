@@ -64,7 +64,7 @@
       <div class="card-body">
         <h5 style="letter-spacing: 1px">Bukti Pembayaran</h5>
 
-        <img src="{{ url($data->bukti_pembayaran) }}" class="img-fluid">
+        <img src="{{ ("http://api.simkemawa.cobadulu.online/gambar/" . $data->bukti_pembayaran) }}" class="img-fluid">
       </div>
     </div>
   </div>

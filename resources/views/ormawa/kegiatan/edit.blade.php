@@ -29,6 +29,10 @@
                 <input type="text" class="form-control" id="nama" name="nama" value="{{ $data->nama }}"> 
             </div>
             <div class="form-group">
+                <label for="deskripsi">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control">{{ $data->deskripsi }}</textarea>
+            </div>
+            <div class="form-group">
                 <label for="poster">Poster</label>
                 <input type="file" class="form-control" id="poster" name="poster">
                 <img src="{{ url('uploads/' . $data->poster) }}" class="img-fluid">

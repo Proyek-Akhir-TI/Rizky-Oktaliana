@@ -33,7 +33,7 @@
                             <td>{{ $value->tgl_pesan }}</td>
                             <td>{{ $value->batas_transaksi }}</td>
                             <td>
-                                <img src="{{ url($value->bukti_pembayaran) }}" alt="">
+                                <img src="{{ ("http://api.simkemawa.cobadulu.online/gambar/" . $value->bukti_pembayaran) }}" width="70">
                             </td>
                             <td>
                                 <span class="badge badge-{{ get_status($value->id_status)['color'] }}">{{ get_status($value->id_status)['name'] }}</span>

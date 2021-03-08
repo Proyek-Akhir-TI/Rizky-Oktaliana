@@ -62,7 +62,7 @@
                   <th>Ruangan</th>
                   <th>Waktu</th>
                   <th>Jumlah Peserta</th>
-                  <th>Jumlah Kehadiran Peserta</th>
+                  <th>Jumlah Kuota Peserta</th>
                   <th>Total Biaya Kegiatan</th>
                   <th>Status Kegiatan</th>
               </thead>

@@ -29,6 +29,10 @@
                 <input type="text" class="form-control" id="nama" name="nama"> 
             </div>
             <div class="form-group">
+                <label for="deskripsi">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
                 <label for="poster">Poster</label>
                 <input type="file" class="form-control" id="poster" name="poster"> 
             </div>

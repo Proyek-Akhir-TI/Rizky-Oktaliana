@@ -43,16 +43,16 @@
                 <td>{{ ($data->jml_peserta) }}</td>
               </tr>
               <tr>
-                <td>Jumlah Kehadiran</td>
+                <td>Jumlah Kuota Peserta</td>
                 <td>{{ ($data->jml_kehadiran) }}</td>
               </tr>
-              <tr>
+              {{-- <tr>
                 <td>Kuota</td>
                 <td>{{ $data->kuota }}</td>
-              </tr>
+              </tr> --}}
               <tr>
                 <td>Biaya</td>
-                <td>{{ $data->biaya_keikutsertaan }}</td>
+                <td>{{ empty($data->biaya_keikutsertaan) ? 'Free' : $data->biaya_keikutsertaan }}</td>
               </tr>
             </table>
           </tr>

@@ -47,13 +47,17 @@
                 <td>{{ rupiah($data->total_biaya_kegiatan) }}</td>
               </tr>
               <tr>
-                <td>Jumlah Kehadiran</td>
-                <td>{{ ($data->jml_kehadiran) }}</td>
+                <td>Biaya Keikutsertaan</td>
+                <td>{{ empty($data->biaya_keikutsertaan) ? 'Free' : rupiah($data->biaya_keikutsertaan) }}</td>
               </tr>
               <tr>
+                <td>Jumlah Kuota Peserta</td>
+                <td>{{ ($data->jml_kehadiran) }}</td>
+              </tr>
+              {{-- <tr>
                 <td>Kuota</td>
                 <td>{{ $data->kuota }}</td>
-              </tr>
+              </tr> --}}
               <tr>
                 <td>Poster</td>
                 <td><img src="{{ url('uploads/' . $data->poster) }}" class="img-fluid"></td>

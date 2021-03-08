@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('public/login');
 });
 
 // Route::get('admin/dashboard', 'DashboardController@index');
