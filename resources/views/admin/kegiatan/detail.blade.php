@@ -16,7 +16,7 @@
 
   <div class="col-lg-8">
 
-    <div class="card shadow mb-4" style="background-color: #385ECE">
+    <div class="card shadow" style="background-color: #385ECE">
       <div class="card-body">
 
         <table>
@@ -46,10 +46,10 @@
                 <td>Jumlah Kehadiran</td>
                 <td>{{ ($data->jml_kehadiran) }}</td>
               </tr> --}}
-              {{-- <tr>
-                <td>Kuota</td>
+              <tr>
+                <td>Jumlah Kuota Peserta</td>
                 <td>{{ $data->kuota }}</td>
-              </tr> --}}
+              </tr>
               <tr>
                 <td>Biaya</td>
                 <td>{{ empty($data->biaya_keikutsertaan) ? 'Free' : $data->biaya_keikutsertaan }}</td>

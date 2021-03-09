@@ -48,12 +48,12 @@
               </tr>
               <tr>
                 <td>Jumlah Kehadiran Peserta</td>
-                <td>{{ ($data->jml_kehadiran) }}</td>
+                <td>{{ ($data->kuota) }}</td>
               </tr>
-              <tr>
+              {{-- <tr>
                 <td>Kuota</td>
                 <td>{{ $data->kuota }}</td>
-              </tr>
+              </tr> --}}
             </table>
           </tr>
         </table>

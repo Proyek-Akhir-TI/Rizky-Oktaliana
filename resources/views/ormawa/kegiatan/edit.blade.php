@@ -71,10 +71,10 @@
                 <label for="biaya_keikutsertaan">Biaya Keikutsertaan</label>
                 <input type="text" class="form-control" id="biaya_keikutsertaan" name="biaya_keikutsertaan" value="{{ $data->biaya_keikutsertaan }}"> 
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="jml_kehadiran">Jumlah Kehadiran Peserta</label>
                 <input type="text" class="form-control" id="jml_kehadiran" name="jml_kehadiran" value="{{ $data->jml_kehadiran }}"> 
-            </div>
+            </div> --}}
             
             <button type="submit" class="btn btn-primary">Simpan Data</button>
         </form>

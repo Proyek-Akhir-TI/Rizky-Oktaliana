@@ -25,10 +25,10 @@
                     <label>Waktu</label>
                     <p><b>{{ $data->tanggal }} | {{ date('H:i', strtotime($data->waktu_mulai)) }} - {{ date('H:i', strtotime($data->waktu_akhir)) }}</b></p>
                 </div>
-                {{-- <div class="form-group">
-                    <label>Sisa Kuota</label>
-                    <p><b>Lab</b></p>
-                </div> --}}
+                <tr>
+                  <td>Jumlah Kuota Peserta</td>
+                  <td>{{ $data->kuota }}</td>
+                </tr>
                 <div class="form-group">
                     <label>Biaya</label>
                     <p><b>{{ empty($data->biaya_keikutsertaan) ? "Gratis" : $data->biaya_keikutsertaan }}</b></p>

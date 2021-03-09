@@ -82,7 +82,7 @@
                         <td>{{ $value->nama_ruangan }}</td>
                         <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
                         <td>{{ $value->jml_peserta }}</td>
-                        <td>{{ $value->jml_kehadiran }}</td>
+                        <td>{{ $value->kuota }}</td>
                         <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
                         <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>
                         <td>
