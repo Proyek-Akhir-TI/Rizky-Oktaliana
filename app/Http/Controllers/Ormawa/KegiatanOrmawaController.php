@@ -212,9 +212,9 @@ class KegiatanOrmawaController extends Controller
         $data['total_biaya_kegiatan'] = str_replace(',', '', $data['total_biaya_kegiatan']);
         $data['biaya_keikutsertaan']  = str_replace(',', '', $data['biaya_keikutsertaan']);
 
-        if ($data['jml_kehadiran'] > 0) {
-            $data['status'] = 2; // Sudah terlaksana
-        }
+        // if ($data['jml_kehadiran'] > 0) {
+        //     $data['status'] = 2; // Sudah terlaksana
+        // }
 
         if (!empty($request->poster)) {
             $data['poster'] = time() . '.' . $request->poster->extension();
