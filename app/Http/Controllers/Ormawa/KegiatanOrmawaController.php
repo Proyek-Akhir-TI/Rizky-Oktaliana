@@ -253,6 +253,8 @@ class KegiatanOrmawaController extends Controller
             where p.id_kegiatan = $id and p.id_status = 3
         ");
         
+        $jml_peserta = collect($peserta)->count();
+        
         $data = collect($data)->first();
 
         $title           = $this->title;
@@ -261,6 +263,7 @@ class KegiatanOrmawaController extends Controller
 
         return view($this->root . '/detail', compact(
             'data',
+            'jml_peserta',
             'peserta',
             'title',
             'form_action_url',

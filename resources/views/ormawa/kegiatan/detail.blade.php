@@ -40,7 +40,7 @@
               </tr>
               <tr>
                 <td>Jumlah Peserta Pendaftar</td>
-                <td>{{ ($data->jml_peserta) }}</td>
+                <td>{{ ($jml_peserta) }}</td>
               </tr>
               <tr>
                 <td>Total Biaya Kegiatan</td>

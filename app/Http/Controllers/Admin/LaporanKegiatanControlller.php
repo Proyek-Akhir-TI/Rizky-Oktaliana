@@ -137,6 +137,7 @@ class LaporanKegiatanControlller extends Controller
             where p.id_kegiatan = $id and p.id_status = 3
         ");
         
+        $jml_peserta = collect($peserta)->count();
         $data = collect($data)->first();
 
         $title           = $this->title;
@@ -144,6 +145,7 @@ class LaporanKegiatanControlller extends Controller
         $form_action_url = $this->root . '/detail/' . $id;
 
         return view($this->root . '/detail', compact(
+            'jml_peserta',
             'data',
             'peserta',
             'title',
