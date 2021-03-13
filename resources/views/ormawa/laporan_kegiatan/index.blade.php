@@ -75,13 +75,21 @@
                     @foreach ($data as $value)
                     @php
                         $total_biaya += (empty($value->total_biaya_kegiatan)) ? 0 : $value->total_biaya_kegiatan;
+
+                        $peserta = DB::select("SELECT
+                                p.id_kegiatan
+                            from pemesanan p
+                            where p.id_kegiatan = $value->id_kegiatan and p.id_status = 3
+                        ");
+
+                        $jml_peserta = collect($peserta)->count();
                     @endphp
                     <tr>
                         <td>{{ $value->nama }}</td>
                         <td>{{ $value->nama_ormawa }}</td>
                         <td>{{ $value->nama_ruangan }}</td>
                         <td>{{ $value->tanggal }} | {{ date('H:i', strtotime($value->waktu_mulai)) }} - {{ date('H:i', strtotime($value->waktu_akhir)) }}</td>
-                        <td>{{ $value->jml_peserta }}</td>
+                        <td>{{ $jml_peserta }}</td>
                         <td>{{ $value->kuota }}</td>
                         <td>{{ rupiah($value->total_biaya_kegiatan) }}</td>
                         <td>{{ ($value->status == 1) ? 'Belum Terlaksana' : 'Sudah Terlaksana' }}</td>

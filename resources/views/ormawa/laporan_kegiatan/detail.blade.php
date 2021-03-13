@@ -47,7 +47,7 @@
                 <td>{{ ($jml_peserta) }}</td>
               </tr>
               <tr>
-                <td>Jumlah Kehadiran Peserta</td>
+                <td>Jumlah Kuota Peserta</td>
                 <td>{{ ($data->kuota) }}</td>
               </tr>
               {{-- <tr>
